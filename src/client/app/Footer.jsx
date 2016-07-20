@@ -9,7 +9,7 @@ const Footer = props=>
         <p>© 2016 gaConnectIn All Rights Reserved</p>
        </section>
        <section className="col-sm-6 text-right">
-          <p><a href=""><span className="glyphicon glyphicon-send" aria-hidden="true"></span> Visit Our Github</a></p>
+          <p><a href="https://www.github.com/GA-ConnectIn/gaconnectin/tree/dev"><span className="glyphicon glyphicon-send" aria-hidden="true"></span> Visit Our Github</a></p>
        </section>
       </div>
     </div>
