@@ -1,12 +1,16 @@
 'use strict'
 
-  const express   = require('express');
-  const logger    = require('morgan');
-  const path      = require('path');
-  const userRoute = require('./routes/user_rt');
+const express     = require('express');
+const logger      = require('morgan');
+const path        = require('path');
+const userRoute   = require('./routes/user_rt');
 const searchRoute = require('./routes/search_rt');
 const app         = express();
 const PORT        = process.argv[2] || process.env.port || 3000;
+
+const env         = process.env.NODE_ENV || 'development';
+const DEV         = env==='development';
+const dotenv      = (DEV) ? require('dotenv').config() : undefined;
 
 app.use( logger('dev') );
 
@@ -24,4 +28,4 @@ app.get('/', (req, res)=>{
 
 
 
-app.listen(PORT , () => console.log(`server here! listening on`, PORT ) );
+app.listen(PORT , () => console.log(`server magic on`, PORT ) );
