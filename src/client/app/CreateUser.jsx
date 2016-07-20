@@ -4,7 +4,7 @@ const CreateUser = props=>
 
 <div className="row">
   <form action="post">
-    <p>CreateUser</p>
+
     <div className="form-group">
       <label type="text" >First Name</label>
       <input className="form-control" type="text" name="display_name" placeholder="Enter first name"/>

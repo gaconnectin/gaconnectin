@@ -2,6 +2,6 @@ import React from 'react';
 
 const DisplayResult = props=>
 
-<p>CreateUser</p>
+<p>DisplayResult</p>
 
 export default DisplayResult;
