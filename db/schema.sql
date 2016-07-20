@@ -4,19 +4,25 @@ DROP TABLE IF EXISTS user2attribute;
 
 CREATE TABLE users (
   user_id SERIAL PRIMARY KEY NOT NULL,
-  username VARCHAR(24) NOT NULL unique,
+  username VARCHAR(24) NOT NULL unique ,
   password_digest VARCHAR NOT NULL,
-  name VARCHAR(64) NOT NULL,
+  display_name VARCHAR(64) NOT NULL,
+  invitation_token VARCHAR(24),
   slack VARCHAR(64)
 );
 
 CREATE TABLE attributes (
   attribute_id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(64) NOT NULL,
-  type VARCHAR(12) NOT NULL
+  attr_name VARCHAR(64) NOT NULL,
+  attr_type VARCHAR(12) NOT NULL
 );
 
 CREATE TABLE user2attribute (
-  user_id INT NOT NULL,
-  attribute_id INT NOT NULL
+  user_id  INT references users (user_id) ON DELETE CASCADE ,
+  attribute_id INT references attributes (attribute_id) ON DELETE CASCADE,
+  CONSTRAINT user_attribute_pkey PRIMARY KEY (user_id, attribute_id)
 );
+
+
+CREATE INDEX on users (username) ;
+CREATE INDEX on attributes (attr_name) ;

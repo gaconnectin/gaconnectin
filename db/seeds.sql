@@ -4,16 +4,16 @@ DELETE FROM user2attribute ;
 
 
 INSERT INTO users
-  (password_digest, username, name, slack)
+  (password_digest, username, display_name, slack)
   VALUES
-  ('password','John D','John Darby', 'git_kong'),
   ('password',' Aaron A','Aaron Aaronson', 'a_son'),
+  ('password','John D','John Darby', 'git_kong'),
   ('password','Rubi L','Rubi Lenowitz', 'dolphinecutie') ;
 
 
 
 INSERT INTO attributes
-  (name, type)
+  (attr_name, attr_type)
   VALUES
   ('comic books', 'interest'),
   ('social drinking', 'interest'),
