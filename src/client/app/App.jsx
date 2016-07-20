@@ -4,8 +4,6 @@ import ReactDOM         from 'react-dom'
 
 import ajax             from '../helpers/ajaxAdapter.js'
 import util             from '../helpers/util.js'
-import SearchContainer  from './SearchContainer.jsx'
-import Search           from './Search.jsx'
 
 
 
