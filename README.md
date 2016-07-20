@@ -1,5 +1,5 @@
 # GA Connect-In
-GA Connect-In is a app for WDI purple rain students to connect with each other for both technical empowerment and good times. Students are provided access to log into their profiles and provide information relative to to the ways they want to connect with their classmates. Hurray!
+GA Connect-In is a app for WDI purple rain students to connect with each other for both technical empowerment and good times. Students are provided access to log into their profiles and provide information relative to to the ways they want to connect with their classmates. Hurray! (Testing)
 
 ![Light Gif](http://31.media.tumblr.com/0cf58cbdcbe452534432e32bcd34f879/tumblr_mj1ai1KipH1s2rqu6o1_500.gif)
 
