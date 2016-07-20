@@ -18,7 +18,7 @@ export default class App extends React.Component{
 
   render(){
     return (
-      <div id="container">
+      <div className="container">
         <Nav />
         <CreateUser />
         <LoginUser />
