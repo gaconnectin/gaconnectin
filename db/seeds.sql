@@ -1,6 +1,6 @@
-DELETE * FROM users ;
-DELETE * FROM attributes ;
-DELETE * FROM user2attribute ;
+DELETE FROM  users ;
+DELETE FROM attributes ;
+DELETE FROM user2attribute ;
 
 
 INSERT INTO users
