@@ -1,4 +1,4 @@
-DELETE FROM  users ;
+DELETE FROM users ;
 DELETE FROM attributes ;
 DELETE FROM user2attribute ;
 
@@ -10,6 +10,12 @@ INSERT INTO users
   ('password','John D','John Darby', 'git_kong'),
   ('password','Rubi L','Rubi Lenowitz', 'dolphinecutie') ;
 
+INSERT INTO invitations
+  (invitation_token)
+  VALUES
+  ('test1'),
+  ('test2'),
+  ('test3') ;
 
 
 INSERT INTO attributes
