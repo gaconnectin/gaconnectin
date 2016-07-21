@@ -16,6 +16,7 @@ searchRouter.route('/skills')
 searchRouter.route('/interests')
       .get(db.getInterest, (req,res)=>res.json(res.rows));
 
+
 searchRouter.route('skills/:id')
       .put(db.getASkill, sendJSONresp);
 
