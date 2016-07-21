@@ -12,40 +12,50 @@ export default function Profile(props) {
                 <img src="https://dizivizi.com/mbb/imgs/site/default_user.png"/>
               </div>
               <div className="col-sm-9">
-                    <form className="form-horizontal">
-                      <div className="form-group">
-                        <label htmlFor="inputEmail3" className="col-sm-2 control-label">Name</label>
-                        <div className="col-sm-10">
-                          <input type="email" className="form-control" id="inputEmail3" placeholder="Email"/>
-                        </div>
+                  <form className="form-group">
+                    <div className="form-group">
+                      <label htmlFor="inputEmail3" className="col-sm-2 control-label">Name</label>
+                      <div className="col-sm-10">
+                        <input type="email" className="form-control" id="inputEmail3" placeholder="Display name"/>
+                          <button>Save</button>
                       </div>
+                     </div>
+                    </form>
+                    <form action="post">
                       <div className="form-group">
                         <label htmlFor="inputPassword3" className="col-sm-2 control-label">SlackId</label>
                         <div className="col-sm-10">
-                          <input type="password" className="form-control" id="inputPassword3" placeholder="Password"/>
-                        </div>
-                      </div>
-                       <div className="form-group">
-                        <label htmlFor="inputPassword3" className="col-sm-2 control-label">Skills</label>
-                        <div className="col-sm-10">
-                          <input type="password" className="form-control" id="inputPassword3" placeholder="Password"/>
-                        </div>
-                      </div>
-                       <div className="form-group">
-                        <label htmlFor="inputPassword3" className="col-sm-2 control-label">Interest</label>
-                        <div className="col-sm-10">
-                          <input type="password" className="form-control" id="inputPassword3" placeholder="Password"/>
+                          <input type="text" className="form-control" id="inputPassword3" placeholder="Please enter your slackId"/>
+                            <button>Save</button>
                         </div>
                       </div>
                     </form>
+
+
+                      <form className="form-inline" action="post">
+                         <div className="form-group">
+                          <label>Choose</label>
+                            <select name="" id="">
+                              <option value="skills">Skills</option>
+                              <option value="interest">Interest</option>
+                            </select>
+                          </div>
+                         <div className="form-group">
+                            <input type="text" className="form-control" id="inputPassword3" placeholder="Update here"/>
+                          </div>
+                        <button type="submit" className="btn btn-default">Save</button>
+                      </form>
+
+
                     <div className="row">
                       <div className="sm-col-6">
+                      <ProfileList />
                       </div>
                       <div className="sm-col-6">
+                      <ProfileList />
                       </div>
                     </div>
               </div>
-               <ProfileList />
           </div>
         </div>
     )
