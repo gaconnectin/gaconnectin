@@ -51,10 +51,10 @@ export default function Profile(props) {
 
 
                     <div className="row">
-                      <div className="sm-col-6">
+                      <div className="col-sm-6">
                       <ProfileList />
                       </div>
-                      <div className="sm-col-6">
+                      <div className="col-sm-6">
                       <SkillList />
                       </div>
                     </div>
