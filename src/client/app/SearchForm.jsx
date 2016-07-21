@@ -19,7 +19,7 @@ return (
 
     <div className="row text-center">
       <hr />
-      <h2>choose what category you want to find</h2>
+      <h2>WELCOME to Ga ConnectIN! PLease search</h2>
       <form action="/search">
       <div>
         <select className="">

@@ -1,18 +1,50 @@
 import React from 'react';
+import { Link } from 'react-router'
+
 //<img className="logo" src="../fonts/reel.svg"/>
 
- const Nav = props=>(
-   <nav className="navbar navbar-default navbar-fixed-top">
-     <div className="container">
-       <div className="navbar-header">
-         <a href="#" className="navbar-left">Logo</a>
-         <a href="../" className="navbar-brand">gaConnectIn<span className="logo"></span></a>
-        </div>
-         <ul className="nav navbar-nav navbar-right">
-           <li><a href="../" className="">Login<span className="logo"></span></a></li>
-            <li> <a href="../" className="">Create Account<span className="logo"></span></a></li>
-         </ul>
-     </div>
-   </nav>
- )
- export default Nav;
+ export default function Nav(props) {
+
+ if(props.userLoggedIn){
+
+  return (
+
+    <nav className="navbar navbar-default navbar-fixed-top">
+         <div className="container">
+           <div className="navbar-header">
+             <a className="navbar-left">Logo</a>
+             <Link to="/">gaConnectIn</Link>
+            </div>
+             <ul className="nav navbar-nav navbar-right">
+               <li><Link to="/logout">Log Out</Link></li>
+               <li><Link to="/user-profile">Profile</Link></li>
+             </ul>
+         </div>
+         {props.children}
+       </nav>
+
+    )
+
+
+ } else {
+
+  return (
+
+     <nav className="navbar navbar-default navbar-fixed-top">
+       <div className="container">
+         <div className="navbar-header">
+           <a className="navbar-left">Logo</a>
+           <Link to="/">gaConnectIn</Link>
+          </div>
+           <ul className="nav navbar-nav navbar-right">
+             <li><Link to="/login">Login</Link></li>
+             <li><Link to="/create-account">Create Account</Link></li>
+           </ul>
+       </div>
+       {props.children}
+     </nav>
+    )
+ }
+
+}
+
