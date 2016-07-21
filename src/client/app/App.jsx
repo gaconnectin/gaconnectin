@@ -17,6 +17,16 @@ import Profile          from './Profile.jsx';
 // create a React Component called _App_
 export default class App extends React.Component{
 
+ constructor() {
+
+    // we also need to wake up our ancestors
+    super();
+
+    // here's our state
+    this.state = {
+      skills: ["CSS", "HTML", "jQuery"]
+    }
+  }
 
 
   render(){
