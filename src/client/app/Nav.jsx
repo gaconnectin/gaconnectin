@@ -2,7 +2,14 @@ import React from 'react';
 //<img className="logo" src="../fonts/reel.svg"/>
 
  export default function Nav(props) {
-  console.log(props.userLoggedIn)
+
+const handleClick=event=>{
+  const page = event.target.dataset.page
+  console.log(page)
+
+}
+
+
  if(props.userLoggedIn){
 
   return (
@@ -11,11 +18,11 @@ import React from 'react';
          <div className="container">
            <div className="navbar-header">
              <a className="navbar-left">Logo</a>
-             <a className="navbar-brand">gaConnectIn<span className="logo"></span></a>
+             <a className="navbar-brand">gaConnectIn</a>
             </div>
              <ul className="nav navbar-nav navbar-right">
-               <li><a href="../" className="">Logout<span className="logo"></span></a></li>
-                <li> <a href="../" className="">Profile<span className="logo"></span></a></li>
+               <li><a >Log Out</a></li>
+                <li> <a>Profile</a></li>
              </ul>
          </div>
        </nav>
@@ -33,8 +40,8 @@ import React from 'react';
            <a className="navbar-brand">gaConnectIn<span className="logo"></span></a>
           </div>
            <ul className="nav navbar-nav navbar-right">
-             <li><a href="../" className="">Login<span className="logo"></span></a></li>
-              <li> <a href="../" className="">Create Account<span className="logo"></span></a></li>
+             <li><a onClick={handleClick} data-page="login">Login</a></li>
+              <li> <a onClick={handleClick} data-page="create">Create Account</a></li>
            </ul>
        </div>
      </nav>

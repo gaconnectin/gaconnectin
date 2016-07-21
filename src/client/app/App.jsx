@@ -24,8 +24,14 @@ export default class App extends React.Component{
 
     // here's our state
     this.state = {
-      userLoggedIn: false
+      userLoggedIn: false,
+      loginPage: ''
     }
+  }
+
+  setLoginPage(){
+
+
   }
 
 
@@ -35,12 +41,9 @@ export default class App extends React.Component{
     return (
       <div className="container">
         <Nav userLoggedIn={this.state.userLoggedIn}/>
-        <CreateUser />
-        <LoginUser />
+
         <SearchForm />
-        <SearchOption />
-        <DisplayResults />
-        <Profile />
+
         <Footer />
       </div>
     )
@@ -49,7 +52,6 @@ export default class App extends React.Component{
 
 // mount our App at #container
 ReactDOM.render(<App />, document.querySelector('#container'))
-
 
 
 
