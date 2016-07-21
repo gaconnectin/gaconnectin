@@ -10,7 +10,7 @@ CREATE TABLE users (
   display_name VARCHAR(64) NOT NULL,
   invitation_token VARCHAR(24),
   slack VARCHAR(64),
-  created_at DATETIME DEFAULT NOW()
+  created_at TIMESTAMP DEFAULT NOW()
 );
 
 CREATE TABLE attributes (
