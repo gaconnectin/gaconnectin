@@ -1,7 +1,7 @@
 // import the libs we need
 import React                          from 'react';
 import ReactDOM                       from 'react-dom';
-import { Router, Route, hashHistory } from 'react-router';
+import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 import { Link }                       from 'react-router'
 
 import ajax             from '../helpers/ajaxAdaptor.js';
@@ -26,7 +26,7 @@ export default class App extends React.Component{
 
     // here's our state
     this.state = {
-      userLoggedIn: true,
+      userLoggedIn: false,
       loginPage: ''
     }
   }
@@ -57,13 +57,14 @@ export default class App extends React.Component{
 // mount our App at #container
 ReactDOM.render((
   <Router history={hashHistory}>
-    <Route component={Nav}>
+    <Route path="/" component={Nav}>
       {/* add the routes here */}
+      <IndexRoute component={SearchForm}/>
       <Route path='/login' component={LoginUser} />
       <Route path='/create-account' component={CreateUser} />
       <Route path='/logout' component={SearchForm} />
       <Route path='/user-profile' component={Profile} />
-       <Route path='/' component={SearchForm} />
+
     </Route>
 
 
