@@ -4,7 +4,7 @@ export default function ProfileList(props) {
 
 
   return (
-    <h1>list</h1>
+    <h1>Profile list</h1>
     )
 
 
