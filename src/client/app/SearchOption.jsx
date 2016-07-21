@@ -18,7 +18,6 @@ const SearchOption = props=>
         <option value="rubyOnRails">Ruby on Rails</option>
       </select>
     <input type="text" placeholder="enter an interest here"/>
-
   </div>
   <h2>I want to find someone who knows</h2>
 </div>
