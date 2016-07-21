@@ -7,8 +7,11 @@ import React from 'react';
        <div className="navbar-header">
          <a href="#" className="navbar-left">Logo</a>
          <a href="../" className="navbar-brand">gaConnectIn<span className="logo"></span></a>
-         <a href="../" className="">Login<span className="logo"></span></a>
-       </div>
+        </div>
+         <ul className="nav navbar-nav navbar-right">
+           <li><a href="../" className="">Login<span className="logo"></span></a></li>
+            <li> <a href="../" className="">Create Account<span className="logo"></span></a></li>
+         </ul>
      </div>
    </nav>
  )
