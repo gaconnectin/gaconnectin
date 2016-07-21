@@ -45,6 +45,3 @@ export default function SearchOption(props) {
 
 
 //jsx show if/skill or value
-
-
-
