@@ -18,7 +18,6 @@ const _db = pg(config);
 module.exports = {
 
 
-
     // GET all skills from users
   getSkills(req, res, next) {
     _db.any(`SELECT users.display_name, attributes.attr_name, attributes.attr_type FROM users INNER JOIN user2attribute as u2a on users.user_id = u2a.user_id INNER JOIN attributes on u2a.attribute_id = attributes.attribute_id WHERE attributes.attr_type in('skills');`)
@@ -32,48 +31,8 @@ module.exports = {
           throw error;
         })
   },
-    // Getting a user skill
-  getASkill(req,res,next) {
-    _db.one(`SELECT users.display_name, attributes.attr_name, attributes.attr_type FROM users INNER JOIN user2attribute as u2a on users.user_id = u2a.user_id INNER JOIN attributes on u2a.attribute_id = attributes.attribute_id WHERE attributes.attr_type in('skills');`)
-        .then( aSkill=> {
-          res.rows = aSkill ;
-          console.log(`Success at getting a users skill !`);
-          next()
-        })
-        .catch(error =>{
-          console.log("You have an error at getting a users skill", error);
-          throw error;
-        })
-  },
-    // Gettng a users interest
-  getAnInterest(req,res,next) {
-    // _db.one(`SELECT users.display_name, attributes.attr_name, attributes.attr_type FROM users INNER JOIN user2attribute as u2a on users.user_id = u2a.user_id INNER JOIN attributes on u2a.attribute_id = attributes.attribute_id WHERE attributes.attr_type in('skills');`)
 
-     // tID is invented here
-    req.body.u2aID = Number.parseInt(req.params.u2aID);
-
-    // req.body.completed = !!req.body.completed;
-
-    _db.one(
-      `UPDATE users, attributes SET
-      users.display_name = $/display_name/,
-      attributes.attr_name = $/attr_name/,
-      WHERE u2a.user_id = $/u2aID/
-      returning *;  `,
-      req.body)
-
-        .then(anInterest=> {
-          res.rows = anInterest;
-          console.log(`Success at getting a users interest !`);
-          next()
-        })
-        .catch(error=>{
-          console.log("You have an error at getting a users interest! ", error);
-          throw error;
-        })
-  },
-
-
+    // Get all interests from users
   getInterest(req,res,next) {
     _db.any(`SELECT users.display_name, attributes.attr_name, attributes.attr_type FROM users INNER JOIN user2attribute as u2a on users.user_id = u2a.user_id INNER JOIN attributes on u2a.attribute_id = attributes.attribute_id WHERE attributes.attr_type in('skills');`)
         .then( interest=> {
