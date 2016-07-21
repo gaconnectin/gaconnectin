@@ -4,7 +4,10 @@ export default function SearchOption(props) {
 
   const handleUserOption=event=>{
     event.preventDefault();
-
+    // this is the drop down input
+    // console.log(event.target.options[event.target.selectedIndex].text);
+    //this is the text input
+    console.log(event.target.value);
     //attr_name =
   }
 
@@ -12,7 +15,7 @@ export default function SearchOption(props) {
 
       <div className="row text-center">
         <div>
-          <form>
+          <form onChange={handleUserOption}>
           <h2>I want to find someone who knows</h2>
              <select name="skill" id="">Skill
                   <option value="css">CSS</option>
@@ -29,7 +32,7 @@ export default function SearchOption(props) {
                   <option value="rubyOnRails">Ruby on Rails</option>
              </select>
              <h2>I want to find someone who likes</h2>
-            <input type="text" placeholder="enter an interest here" required/>
+            <input name="interest" type="text" placeholder="enter an interest here" required/>
           </form>
         </div>
         <hr />
