@@ -13,6 +13,7 @@ import SearchOption     from './SearchOption.jsx';
 import DisplayResults   from './DisplayResult.jsx';
 import Profile          from './Profile.jsx';
 
+
 // create a React Component called _App_
 export default class App extends React.Component{
 
