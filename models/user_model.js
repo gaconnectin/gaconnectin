@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const salt = bcrypt.genSalt(10);
 
 function getAllUsers(req,res,next) {
-  db.any('SELECT * from users')
+  _db.any('SELECT * from users')
   .then( data => {
     res.rows = data;
     next();
@@ -22,12 +22,15 @@ function createSecure(username, password, display_name, slack, callback) {
   })
 }
 
+
 function checkInvitationToken(req, res, next) {
- db.one(`SELECT * 
+  console.log('In checkInvitationToken. req.body =', req.body)
+ _db.any(`SELECT * 
           FROM invitations
           WHERE invitation_token=$1`,[req.body.invitation_token])
           .then(data => {
-            res.has_valid_token = data.invitation_token ? true : false;
+            console.log("data = ", data);
+            res.has_valid_token = (data && data[0] && data[0].invitation_token) ? true : false;
             next();
           })
           .catch( error => {
@@ -37,17 +40,20 @@ function checkInvitationToken(req, res, next) {
 }
 
 function createUser(req, res, next) {
+  console.log("In create user. has valid token = ", res.has_valid_token)
   if (res.has_valid_token) {
     createSecure( req.body.username, req.body.password, req.body.display_name, req.body.slack, saveUser)
     function saveUser(username, hash, display_name, slack) {
-      db.any(`INSERT INTO users (username, passwordDigest, display_name, slack, date_created)
-             VALUES($1,$2,$3,$4,now())`,[email, hash])
+
+      _db.any(`INSERT INTO users (username, password_digest, display_name, slack)
+             VALUES($1,$2,$3,$4)`,[username, hash, display_name, slack])
            .then(data => {
             console.log(data);
             next();
            })
            .catch( error => {
             console.log('Error ', error);
+            next();
            })
     }
   } else {
@@ -69,10 +75,10 @@ function updateUser(req,res,next) {
     }
   }
   console.log('queryString = ', queryString)
-  db.any(`UPDATE users SET
+  _db.any(`UPDATE users SET
           ${queryString}
           WHERE user_id=$4`,
-          [req.body.first_name,req.body.last_name,req.body.age,req.params.id])
+          [req.body.username,req.body.display_name,req.body.slack,req.params.id])
     .then( data => {
       console.log('Update successful!');
       next();
@@ -83,7 +89,7 @@ function updateUser(req,res,next) {
 }
 
 function getUser(req,res,next) {
-  db.one(`SELECT * 
+  _db.one(`SELECT * 
           FROM users
           WHERE user_id=$1`,[req.params.id])
           .then(data => {
@@ -117,4 +123,4 @@ function getUser(req,res,next) {
 
 // }
 
-module.exports = { getAllUsers, getUser, createUser, checkInvitationToken };
+module.exports = { getAllUsers, getUser, createUser, checkInvitationToken, updateUser };
