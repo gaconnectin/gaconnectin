@@ -1,14 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router'
+
 //<img className="logo" src="../fonts/reel.svg"/>
 
  export default function Nav(props) {
-
-const handleClick=event=>{
-  const page = event.target.dataset.page
-  console.log(page)
-
-}
-
 
  if(props.userLoggedIn){
 
@@ -18,14 +13,16 @@ const handleClick=event=>{
          <div className="container">
            <div className="navbar-header">
              <a className="navbar-left">Logo</a>
-             <a className="navbar-brand">gaConnectIn</a>
+             <Link to="/">gaConnectIn</Link>
             </div>
              <ul className="nav navbar-nav navbar-right">
-               <li><a >Log Out</a></li>
-                <li> <a>Profile</a></li>
+               <li><Link to="/logout">Log Out</Link></li>
+               <li><Link to="/user-profile">Profile</Link></li>
              </ul>
          </div>
+         {props.children}
        </nav>
+
     )
 
 
@@ -37,13 +34,14 @@ const handleClick=event=>{
        <div className="container">
          <div className="navbar-header">
            <a className="navbar-left">Logo</a>
-           <a className="navbar-brand">gaConnectIn<span className="logo"></span></a>
+           <Link to="/">gaConnectIn</Link>
           </div>
            <ul className="nav navbar-nav navbar-right">
-             <li><a onClick={handleClick} data-page="login">Login</a></li>
-              <li> <a onClick={handleClick} data-page="create">Create Account</a></li>
+             <li><Link to="/login">Login</Link></li>
+             <li><Link to="/create-account">Create Account</Link></li>
            </ul>
        </div>
+       {props.children}
      </nav>
     )
  }

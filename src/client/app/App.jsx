@@ -1,6 +1,8 @@
 // import the libs we need
-import React            from 'react';
-import ReactDOM         from 'react-dom';
+import React                          from 'react';
+import ReactDOM                       from 'react-dom';
+import { Router, Route, hashHistory } from 'react-router';
+import { Link }                       from 'react-router'
 
 import ajax             from '../helpers/ajaxAdaptor.js';
 import util             from '../helpers/util.js';
@@ -24,7 +26,7 @@ export default class App extends React.Component{
 
     // here's our state
     this.state = {
-      userLoggedIn: false,
+      userLoggedIn: true,
       loginPage: ''
     }
   }
@@ -39,19 +41,37 @@ export default class App extends React.Component{
 
   render(){
     return (
+
+
+
       <div className="container">
-        <Nav userLoggedIn={this.state.userLoggedIn}/>
 
-        <SearchForm />
 
-        <Footer />
       </div>
+
+
     )
   }
 }
 
 // mount our App at #container
-ReactDOM.render(<App />, document.querySelector('#container'))
+ReactDOM.render((
+  <Router history={hashHistory}>
+    <Route component={Nav}>
+      {/* add the routes here */}
+      <Route path='/login' component={LoginUser} />
+      <Route path='/create-account' component={CreateUser} />
+      <Route path='/logout' component={SearchForm} />
+      <Route path='/user-profile' component={Profile} />
+       <Route path='/' component={SearchForm} />
+    </Route>
+
+
+
+
+
+  </Router>
+), document.getElementById('container'))
 
 
 
