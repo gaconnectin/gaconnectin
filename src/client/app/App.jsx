@@ -24,15 +24,17 @@ export default class App extends React.Component{
 
     // here's our state
     this.state = {
-      skills: ["CSS", "HTML", "jQuery"]
+      userLoggedIn: false
     }
   }
+
+
 
 
   render(){
     return (
       <div className="container">
-        <Nav />
+        <Nav userLoggedIn={this.state.userLoggedIn}/>
         <CreateUser />
         <LoginUser />
         <SearchForm />
