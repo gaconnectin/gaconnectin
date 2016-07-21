@@ -62,30 +62,48 @@ function createUser(req, res, next) {
   }
 } 
 
+
 function updateUser(req,res,next) {
-  let paramVals = [ req.body.username, req.body.display_name, req.body.slack ];
-  let paramNames = ['username', 'display_name', 'slack'];
+  items = [
+    { name: 'username', val: req.body.username },
+    { name: 'display_name', val: req.body.display_name },
+    { name: 'slack', val: req.body.slack },
+  ];
+
   let queryString = '';
-  for (let i=0; i<paramVals.length; i++) {
-    if (queryString) {
-      queryString += ", ";
-    }
-    if (paramVals[i] !== '') {
-      queryString += `${paramNames[i]}=$${i+1}`;
+  let vals = [];
+  let currI = 0;
+  let currVal;
+
+  for (let i=0; i<items.length; i++) {
+    currVal = items[i].val;
+    console.log('currVal = ', currVal);
+    if (currVal !== undefined && currVal !== '') {
+      if (queryString) {
+        queryString += ", ";
+      }
+      currI += 1;
+      queryString += `${items[i].name}=$${currI}`;
+      vals.push(items[i].val);
     }
   }
-  console.log('queryString = ', queryString)
+
+  currI += 1;
+  vals.push(req.params.uID)
+  console.log('queryString = ', queryString);
+  console.log('vals = ', vals);
   _db.any(`UPDATE users SET
-          ${queryString}
-          WHERE user_id=$4`,
-          [req.body.username,req.body.display_name,req.body.slack,req.params.id])
-    .then( data => {
-      console.log('Update successful!');
-      next();
-    })
-    .catch( error => {
-      console.log('Error ',error);
-    });
+        ${queryString}
+        WHERE user_id=$${currI};`,
+        vals)
+  .then( data => {
+    console.log('Update successful!');
+    next();
+  })
+  .catch( error => {
+    console.log('Error ',error);
+  });
+
 }
 
 function getUser(req,res,next) {

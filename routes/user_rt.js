@@ -5,9 +5,7 @@ const { getAllUsers, getUser, createUser, checkInvitationToken, updateUser } = r
 const sendJSONresp = (req,res)=>res.json(res.rows)
 
 userRouter.route('/')
-  .get(getAllUsers, (req, res)=>{
-     res.send('you hit the User Route')
-  })
+  .get(getAllUsers, sendJSONresp)
   .post(checkInvitationToken, createUser, (req, res)=> {
     if (res.error) {
 //      res.send("Got error: ", res.error);
@@ -17,6 +15,8 @@ userRouter.route('/')
     }
 
   })
+
+userRouter.route('/:uID')
   .put(updateUser, sendJSONresp)
 
 
