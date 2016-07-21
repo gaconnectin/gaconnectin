@@ -1,35 +1,38 @@
-import React from 'react';
+import React       from 'react';
 import ProfileList from './ProfileList.jsx';
+import SkillList   from './SkillList.jsx';
 
 export default function Profile(props) {
 
   return (
         <div>
           <hr/>
-          <h1 className="text-center">User Profile</h1>
+          <h1 className="text-center">Edit Profile</h1>
             <div className="row">
               <div className="col-sm-3">
                 <img src="https://dizivizi.com/mbb/imgs/site/default_user.png"/>
               </div>
               <div className="col-sm-9">
-                  <form className="form-group">
+                  <form className="form-inline">
                     <div className="form-group">
                       <label htmlFor="inputEmail3" className="col-sm-2 control-label">Name</label>
                       <div className="col-sm-10">
                         <input type="email" className="form-control" id="inputEmail3" placeholder="Display name"/>
-                          <button>Save</button>
+                          <button className="btn btn-default">Save</button>
                       </div>
                      </div>
                     </form>
-                    <form action="post">
+
+                    <form action="post" className="form-inline">
                       <div className="form-group">
                         <label htmlFor="inputPassword3" className="col-sm-2 control-label">SlackId</label>
                         <div className="col-sm-10">
                           <input type="text" className="form-control" id="inputPassword3" placeholder="Please enter your slackId"/>
-                            <button>Save</button>
+                            <button className="btn btn-default">Save</button>
                         </div>
                       </div>
                     </form>
+
 
 
                       <form className="form-inline" action="post">
@@ -52,7 +55,7 @@ export default function Profile(props) {
                       <ProfileList />
                       </div>
                       <div className="sm-col-6">
-                      <ProfileList />
+                      <SkillList />
                       </div>
                     </div>
               </div>
