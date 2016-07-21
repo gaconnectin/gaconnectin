@@ -120,25 +120,35 @@ function getUser(req,res,next) {
 
 }
 
-// function addUserAttribute(req,res,next) {
-//   db.one(`with inserted as (
-//             insert into attributes (attr_name, attr_type)
-//             values($1, '$2) ON CONFLICT (attr_name, attr_type) 
-//             DO UPDATE SET attr_name = EXCLUDED.attr_name returning *
-//          )
-//          insert into user2attribute(user_id,attribute_id) 
-//          select , inserted.attribute_id from inserted;
-//     SELECT * 
-//           FROM users
-//           WHERE user_id=$1`,[req.params.id])
-//           .then(data => {
-//             res.rows = data;
-//             next();
-//           })
-//           .catch( error => {
-//             console.log('Error ', error);
-//           })
+function deleteUser(req,res,next) {
+  _db.any(`DELETE FROM users
+          WHERE user_id = $1`, [req.params.uID])
+       .then(data => {
+        console.log(data);
+        next();
+       })
+        .catch( error => {
+        console.log('Error ', error);
+      });
+}
 
-// }
 
-module.exports = { getAllUsers, getUser, createUser, checkInvitationToken, updateUser };
+function addUserAttribute(req,res,next) {
+  db.any(`with inserted as (
+            insert into attributes (attr_name, attr_type)
+            values($1, '$2) ON CONFLICT (attr_name, attr_type) 
+            DO UPDATE SET attr_name = EXCLUDED.attr_name returning *
+         )
+         insert into user2attribute(user_id,attribute_id) 
+         select $3, inserted.attribute_id from inserted;`,[req.body.attr_name, req.body.attr_type, req.params.uID])
+          .then(data => {
+            res.rows = data;
+            next();
+          })
+          .catch( error => {
+            console.log('Error ', error);
+          })
+
+}
+
+module.exports = { getAllUsers, getUser, createUser, checkInvitationToken, updateUser, deleteUser, addUserAttribute};
