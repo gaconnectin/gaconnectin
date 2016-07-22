@@ -1,5 +1,5 @@
 'use strict';
-const _db = require('../db/db')
+const _db = require('../db/db') ;
 // const pg = require('pg-promise')({
 // // Initialization Options
 // });
@@ -21,6 +21,7 @@ module.exports = {
     // GET all skills from users
 
   getSkills(req, res, next) {
+    console.log("IN getSkills!!!")
     _db.any(`SELECT attr_name FROM attributes WHERE attr_type= 'skills' ;`)
         .then( skills=> {
           res.rows = skills ;
@@ -63,6 +64,7 @@ module.exports = {
 
   // GET all users and their interests and skills
   getUserTypes(req, res, next) {
+    console.log("In getUserTypes!!!")
     _db.any(`SELECT users.display_name, attributes.attr_name, attributes.attr_type FROM users INNER JOIN user2attribute as u2a on users.user_id = u2a.user_id INNER JOIN attributes on u2a.attribute_id = attributes.attribute_id; ` )
         .then( types=>{
           res.rows = types ;

@@ -1,4 +1,8 @@
-export default class AjaxAdapter {
+export default class AjaxAdaptor {
+
+  constructor(fetch){
+    if(!fetch) throw "HELP";
+  }
 
   getSkills() {
     console.log("hit getSkills AjaxAdapter")
