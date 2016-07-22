@@ -8,7 +8,6 @@ export default class AjaxAdaptor {
     console.log("hit getSkills AjaxAdapter")
      return fetch('/search/skills')
     .then(r => r.json())
-    console.log(r)
     }
 
   getInterests() {

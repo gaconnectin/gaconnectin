@@ -14,9 +14,7 @@ const app         = express();
 const PORT        = process.argv[2] || process.env.port || 3000;
 
 
-app.use( logger('dev') );
-
-app.use( express.static(path.join(__dirname, 'dist')));
+app.use( logger( DEV ? 'dev' : 'common') );
 
 app.use(bodyParser.json());
 
@@ -26,6 +24,9 @@ app.use(bodyParser.json());
 app.use('/search', searchRoute);
 
 app.use('/user', userRoute);
+
+app.use( express.static(path.join(__dirname, 'dist')));
+
 
 
 
