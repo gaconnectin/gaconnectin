@@ -1,15 +1,15 @@
 import React from 'react';
 
-export default function SearchOption(props) {
 
 export default function SearchOption(props) {
-
   const handleUserOption=event=>{
     event.preventDefault();
     // this is the drop down input
     // console.log(event.target.options[event.target.selectedIndex].text);
     //this is the text input
     console.log(event.target.value);
+
+    //console.log(props.getChoice)
     //attr_name =
   }
 
@@ -19,10 +19,14 @@ export default function SearchOption(props) {
         <div>
           <form onChange={handleUserOption}>
           <h2>I want to find someone who knows</h2>
-             <select name="skill" id="">
-               {props.attr.map((attr,index)=>
-                  <option key={index}></option>
-                )}
+             <select name="skill">
+             {props.showSkills.map(function(skill, ind) {
+              return (
+                <option key={ind}>{skill}</option>
+              )
+
+             })}
+
 
              </select>
              <h2>I want to find someone who likes</h2>

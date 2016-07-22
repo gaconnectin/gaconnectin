@@ -20,14 +20,14 @@ app.use( express.static(path.join(__dirname, 'dist')));
 app.use(bodyParser.json());
 
 //ROUTES
+app.get('*', (req, res)=>
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'))
+    )
 
 app.use('/search', searchRoute);
 
 app.use('/user', userRoute);
 
-app.get('/', (req, res)=>{
-  res.send("Hello you're home")
-});
 
 
 
