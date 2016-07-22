@@ -12,6 +12,8 @@ export default function SearchForm(props) {
     console.log(userChoice);
 
 
+    props.getChoice(userChoice);
+
 
 //send name as GET ROUTE to /search/attr needs to return SearchOptions attr type (skill drop down or interest input value)
   }

@@ -30,6 +30,11 @@ export default class Nav extends React.Component{
     this.setState({attrState:this.state.attrState})
   }
 
+  getChoice(userAttr){
+
+    this.setState({attrState:this.state.attrState})
+  }
+
 render(){
  if(this.state.userLoggedIn){
 
