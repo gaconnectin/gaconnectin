@@ -1,42 +1,29 @@
 import React from 'react';
 
 
-export default function SearchOption(props) {
-  const handleUserOption=event=>{
-    event.preventDefault();
-    // this is the drop down input
-    // console.log(event.target.options[event.target.selectedIndex].text);
-    //this is the text input
-    console.log(event.target.value);
+export default function SearchOption(props){
 
-    //console.log(props.getChoice)
-    //attr_name =
-  }
+  return(
 
- return (
+          <div className="row text-center">
+            <div>
+              <form>
+              <h2>I want to find someone who likes</h2>
+                 <select>
+                    {props.userChoice.map(function(item, index){
+                      return <option key={index}>{item}</option>
+                    })}
 
-      <div className="row text-center">
-        <div>
-          <form onChange={handleUserOption}>
-          <h2>I want to find someone who knows</h2>
-             <select name="skill">
-             {props.showSkills.map(function(skill, ind) {
-              return (
-                <option key={ind}>{skill}</option>
-              )
+                 </select>
 
-             })}
+                <input name="interest" type="text" placeholder="enter an interest here"/>
+                <button className="btn btn-default" type="submit">FIND!</button>
+              </form>
+            </div>
+            <hr />
+          </div>
+    )
 
-
-             </select>
-             <h2>I want to find someone who likes</h2>
-            <input name="interest" type="text" placeholder="enter an interest here" required/>
-          </form>
-        </div>
-        <hr />
-      </div>
-
- )
 
 }
 
@@ -44,5 +31,10 @@ export default function SearchOption(props) {
 
 
 
+
+//   React.Children.map(props.children, child=>
+                  // React.cloneElement(child, {
+                  //   onClick: clickDelete(key)
+                  // }))
 
 //jsx show if/skill or value
