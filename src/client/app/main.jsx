@@ -14,6 +14,7 @@ import SearchForm       from './SearchForm.jsx';
 import SearchOption     from './SearchOption.jsx';
 import DisplayResults   from './DisplayResult.jsx';
 import Profile          from './Profile.jsx';
+import MainProfile      from './MainProfile.jsx';
 
 
 
@@ -56,6 +57,7 @@ ReactDOM.render((
       <Route path='/create-account' component={CreateUser} />
       <Route path='/logout' component={SearchForm} />
       <Route path='/user-profile' component={Profile} />
+      <Route path='/user-mainprofile' component={MainProfile} />
 
     </Route>
   </Router>
