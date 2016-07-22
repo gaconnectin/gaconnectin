@@ -17,16 +17,22 @@ constructor() {
     super();
 
     this.state = {
-      skills: ["one", "two", "three"]
+      skills: ["one", "two", "three"],
+      userChoice: 'skills'
     }
 }
 componentDidMount(){
 
-
-    ajax.getSkills().then( data=>
-      // when the data comes back, update the state
-      //this.setState({skills: this.state.skills})
-      console.log(data)
+  console.log('ComponentDidMount')
+    ajax.getSkills().then( data=> {
+      let newData = [];
+       console.log(data[0]['attr_name'], 'insidePromise')
+      for(let i = 0; i < data.length; i++){
+        newData.push(data[i]['attr_name'])
+        this.state.skills = newData;
+      }
+      this.setState({skills: this.state.skills})
+    }
     )
 
   }
@@ -48,7 +54,10 @@ handleDropDown(event){
     let selected = document.getElementById( "choice" );
 
     let userChoice = selected.options[ selected.selectedIndex ].value;
-    console.log('user choices', userChoice);
+    console.log(userChoice)
+    this.state.userChoice = userChoice
+
+    this.setState({userChoice: this.state.userChoice})
 
   }
 
@@ -74,11 +83,9 @@ render(){
           </div>
           </form>
           <hr />
-          <SearchOption userChoice={this.state.skills}/>
+          <SearchOption userSkill={this.state.skills} userChoice={this.state.userChoice}/>
         </div>
       )
 
   }
 }
-
-
