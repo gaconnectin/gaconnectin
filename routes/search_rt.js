@@ -16,11 +16,11 @@ searchRouter.route('/skills')
 searchRouter.route('/interests')
       .get(db.getInterest, (req,res)=>res.json(res.rows));
 
-searchRouter.route('/users-skills')
-      .get(db.getUsersSkills, sendJSONresp);
+searchRouter.route('/users-attributes')
+      .get(db.getUsersAttributes, sendJSONresp);
 
-searchRouter.route('/users-interests')
-      .get(db.getUsersInterest, (req,res)=>res.json(res.rows));
+// searchRouter.route('/users-interests')
+//       .get(db.getUsersInterest, (req,res)=>res.json(res.rows));
 
 
 
