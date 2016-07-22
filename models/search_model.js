@@ -1,5 +1,5 @@
 'use strict';
-const _db = require('../db/db');
+const _db = require('../db/db') ;
 // const pg = require('pg-promise')({
 // // Initialization Options
 // });
