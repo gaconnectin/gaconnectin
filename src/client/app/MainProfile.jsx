@@ -2,10 +2,20 @@ import React       from 'react';
 import ProfileList from './ProfileList.jsx';
 import SkillList   from './SkillList.jsx';
 
+import ajaxAdaptor          from '../helpers/ajaxAdaptor.js';
+
+const ajax = new ajaxAdaptor(fetch);
+
 
 export default function MainProfile(props) {
 
-  return (
+
+
+
+
+
+
+    return (
         <div className="container">
           <hr/>
           <h1 className="text-center">Persons name</h1>
@@ -30,7 +40,8 @@ export default function MainProfile(props) {
                               <li>users Interests </li>
                               <li>users Interests </li>
                           </ul>
-                        <label htmlFor="inputPassword3" className="col-sm-2 control-label">SlackId</label>
+                        <label htmlFor="inputPassword3" className="col-sm-2 control-label">user slackname</label>
+
 
                       </div>
                      </div>
@@ -62,6 +73,7 @@ export default function MainProfile(props) {
           </div>
         </div>
     )
+
 
 
 }
