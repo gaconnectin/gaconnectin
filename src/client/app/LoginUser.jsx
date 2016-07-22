@@ -3,7 +3,7 @@ import React from 'react';
 const LoginUser = props=>
 
 // POST to ROUTE req.body /user/login
-<div>
+<div className="container">
   <form action="post">
     <p>LoginUser</p>
     <div className="form-group">

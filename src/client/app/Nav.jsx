@@ -3,9 +3,35 @@ import { Link } from 'react-router'
 
 //<img className="logo" src="../fonts/reel.svg"/>
 
- export default function Nav(props) {
+export default class Nav extends React.Component{
 
- if(props.userLoggedIn){
+ constructor() {
+
+    // we also need to wake up our ancestors
+    super();
+
+    // here's our state
+    this.state = {
+      userLoggedIn: false,
+      attrState: [
+        "CSS",
+        "HTML",
+        "Javascript"
+      ]
+    }
+  }
+
+  componentDidMount(){
+    // go to the db and get the freshest tasks
+    // ajax.getAttribute().then( data=>
+    //   // when the data comes back, update the state
+    //   this.setState({tasks: data.indexByKey('task_id') })
+    // )
+    this.setState({attrState:this.state.attrState})
+  }
+
+render(){
+ if(this.state.userLoggedIn){
 
   return (
 
@@ -20,7 +46,7 @@ import { Link } from 'react-router'
                <li><Link to="/user-profile">Profile</Link></li>
              </ul>
          </div>
-         {props.children}
+         {this.props.children}
        </nav>
 
     )
@@ -41,10 +67,11 @@ import { Link } from 'react-router'
              <li><Link to="/create-account">Create Account</Link></li>
            </ul>
        </div>
-       {props.children}
+       {this.props.children}
      </nav>
     )
  }
+}
 
 }
 

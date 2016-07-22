@@ -2,7 +2,7 @@ import React from 'react';
 
 const DisplayResult = props=>
 
-  <div>
+  <div className="container">
     <hr/>
     <ul>
       <li>

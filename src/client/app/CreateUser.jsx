@@ -26,7 +26,7 @@ export default function CreateUser(props) {
 
 return (
 
-    <div className="row">
+    <div className="row container">
       <form onSubmit={handleSubmit}>
 
         <div className="form-group">

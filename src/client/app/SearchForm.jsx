@@ -7,7 +7,9 @@ export default function SearchForm(props) {
 
   const handleDropDown= event=> {
     event.preventDefault();
-    console.log(event.target.options[event.target.selectedIndex].text)
+
+    const userChoice = event.target.options[event.target.selectedIndex].text;
+    console.log(userChoice);
 
 
 
@@ -20,7 +22,7 @@ return (
     <div className="row text-center">
       <hr />
       <h2>WELCOME to Ga ConnectIN! PLease search</h2>
-      <form action="/search">
+      <form onChange={handleDropDown}>
       <div>
         <select className="">
           <option name="skill" value="">Skill</option>
