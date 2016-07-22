@@ -2,7 +2,7 @@ import React from 'react';
 // require('../images/GA_Stack_Small_RedBlack_RGB.png')
 
 const Footer = props=>
-  <footer>
+  <footer className="container">
     <div className="footer-copyright">
       <div className="container">
          <section className="col-sm-6">
