@@ -1,6 +1,11 @@
 import React from 'react';
 import SearchOption from './SearchOption.jsx'
 
+import ajaxAdaptor          from '../helpers/ajaxAdaptor.js';
+
+const ajax = new ajaxAdaptor(fetch);
+
+
 
 
 
@@ -17,9 +22,16 @@ constructor() {
 }
 componentDidMount(){
 
-    this.setState({
-      skills: this.state.skills
-    })
+
+    ajax.getSkills().then( data=>
+      // when the data comes back, update the state
+      //this.setState({skills: this.state.skills})
+      console.log(data)
+// var newSkillsArr = data.map(function(item){
+//         return item.attr_name
+//       })
+//       console.log(newSkillsArr)
+    )
 
   }
 
@@ -72,5 +84,3 @@ render(){
 
   }
 }
-
-
