@@ -134,9 +134,10 @@ function deleteUser(req,res,next) {
 
 
 function addUserAttribute(req,res,next) {
-  db.any(`with inserted as (
+  console.log(`attr_name = ${req.body.attr_name}, attr_type = ${req.body.attr_type}`);
+  _db.any(`with inserted as (
             insert into attributes (attr_name, attr_type)
-            values($1, '$2) ON CONFLICT (attr_name, attr_type) 
+            values($1, $2) ON CONFLICT (attr_name, attr_type) 
             DO UPDATE SET attr_name = EXCLUDED.attr_name returning *
          )
          insert into user2attribute(user_id,attribute_id) 
@@ -151,4 +152,39 @@ function addUserAttribute(req,res,next) {
 
 }
 
-module.exports = { getAllUsers, getUser, createUser, checkInvitationToken, updateUser, deleteUser, addUserAttribute};
+function findUserAttributeId(req,res,next) {
+  if (req.body.attribute_id) {
+    next();
+  } else {
+    _db.any(`SELECT attribute_id from attributes
+             WHERE attr_name=$1 and attr_type=$2`, [req.body.attr_name, req.body.attr_type])
+    .then(data => {
+      console.log(data);
+      let id = (data && data[0] && data[0].attribute_id) ? data[0].attribute_id : null;
+      console.log('attribute_id = ', id)
+      if (id) {
+        req.body.attribute_id = id;
+      }
+      next();
+    })
+  }
+}
+
+function deleteUserAttribute(req,res,next) {
+  if (!req.body.attribute_id) {
+    console.log("No attribute_id to delete!")
+  } else {
+    _db.any(`DELETE FROM user2attribute
+            WHERE attribute_id = $1 and user_id = $2`, [req.body.attribute_id, req.params.uID])
+         .then(data => {
+          console.log(data);
+          next();
+         })
+          .catch( error => {
+          console.log('Error ', error);
+        });
+  }
+}
+module.exports = { getAllUsers, getUser, createUser, checkInvitationToken, 
+                   updateUser, deleteUser, addUserAttribute, findUserAttributeId,
+                   deleteUserAttribute};
