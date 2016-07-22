@@ -10,7 +10,7 @@ constructor(fetch){
      return fetch('/search/skills')
     .then(r => r.json())
     console.log(r)
-    },
+    }
 
   handleInterestList() {
     let self = this
