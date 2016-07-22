@@ -56,6 +56,7 @@ handleDropDown(event){
     let userChoice = selected.options[ selected.selectedIndex ].value;
     console.log(userChoice)
     this.state.userChoice = userChoice
+
     this.setState({userChoice: this.state.userChoice})
 
   }
