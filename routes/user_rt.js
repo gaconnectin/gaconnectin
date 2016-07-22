@@ -1,5 +1,13 @@
 const userRouter = require('express').Router();
-const { getAllUsers, getUser, createUser, checkInvitationToken, updateUser, deleteUser, addUserAttribute } = require('../models/user_model');
+const { getAllUsers, 
+        getUser, 
+        createUser, 
+        checkInvitationToken, 
+        updateUser, 
+        deleteUser, 
+        addUserAttribute , 
+        findUserAttributeId,
+        deleteUserAttribute } = require('../models/user_model');
 
 /* convenience method for sending */
 const sendJSONresp = (req,res)=>res.json(res.rows)
@@ -22,6 +30,9 @@ userRouter.route('/:uID')
 
 userRouter.route('/:uID/add-attr')
   .post(addUserAttribute, sendJSONresp)
+
+userRouter.route('/:uID/delete-attr')
+  .post(findUserAttributeId, deleteUserAttribute, sendJSONresp)
 
 
 module.exports = userRouter;

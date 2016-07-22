@@ -2,11 +2,13 @@ import React from 'react';
 
 export default function SearchOption(props) {
 
+export default function SearchOption(props) {
+
   const handleUserOption=event=>{
     event.preventDefault();
     // this is the drop down input
     // console.log(event.target.options[event.target.selectedIndex].text);
-    //this is the text
+    //this is the text input
     console.log(event.target.value);
     //attr_name =
   }

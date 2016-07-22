@@ -21,13 +21,23 @@ export default class Nav extends React.Component{
     }
   }
 
-  componentDidMount(){
+componentDidMount(){
+
+    const self = this
+
     // go to the db and get the freshest tasks
     // ajax.getAttribute().then( data=>
     //   // when the data comes back, update the state
     //   this.setState({tasks: data.indexByKey('task_id') })
-    // )
-    this.setState({attrState:this.state.attrState})
+    ajax.handleSkillsList()
+        .then(function(data) {
+          this.setState({attrState:this.state.attrState})
+        })
+
+    ajax.handleInterestList()
+        .then(function(data) {
+          this.setState({attrState:this.state.attrState})
+        })
   }
 
   getChoice(userAttr){
