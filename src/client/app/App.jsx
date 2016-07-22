@@ -39,7 +39,6 @@ export default class App extends React.Component{
 
 
 
-
   render(){
     return (
 
@@ -65,7 +64,6 @@ ReactDOM.render((
       <Route path='/create-account' component={CreateUser} />
       <Route path='/logout' component={SearchForm} />
       <Route path='/user-profile' component={Profile} />
-      <Route path='/' component={SearchOption} />
 
     </Route>
 
