@@ -17,58 +17,22 @@ import Profile          from './Profile.jsx';
 
 
 // create a React Component called _App_
-export default class App extends React.Component{
 
- constructor() {
-
-    // we also need to wake up our ancestors
-    super();
-
-    // here's our state
-    this.state = {
-      userLoggedIn: false,
-      loginPage: ''
-    }
-  }
-
-  setLoginPage(){
-
-
-  }
-
-
-
-
-  render(){
-    return (
-
-
-
-      <div className="container">
-
-
-      </div>
-
-
-    )
-  }
-}
 
 // mount our App at #container
 ReactDOM.render((
   <Router history={hashHistory}>
     <Route path="/" component={Nav}>
       {/* add the routes here */}
-      <IndexRoute component={SearchForm}/>
+      <IndexRoute component={SearchForm}>
+          <Route path='/:attr' component={SearchOption} />
+      </IndexRoute>
       <Route path='/login' component={LoginUser} />
       <Route path='/create-account' component={CreateUser} />
       <Route path='/logout' component={SearchForm} />
       <Route path='/user-profile' component={Profile} />
 
     </Route>
-
-
-
 
 
   </Router>

@@ -2,10 +2,11 @@ import React       from 'react';
 import ProfileList from './ProfileList.jsx';
 import SkillList   from './SkillList.jsx';
 
+
 export default function Profile(props) {
 
   return (
-        <div>
+        <div className="container">
           <hr/>
           <h1 className="text-center">Edit Profile</h1>
             <div className="row">
