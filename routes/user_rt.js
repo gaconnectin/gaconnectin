@@ -17,7 +17,6 @@ const tokenService = require('../service/tokens.js');
 const sendJSONresp = (req,res)=>res.json(res.rows)
 const sendError = (err,req,res,next)=>res.status(401).json(err)
 
-//userRouter.use( tokenService.validateToken )
 
   /* This is whre the user logs in */
 userRouter.post('/authenticate',
@@ -25,10 +24,7 @@ userRouter.post('/authenticate',
             tokenService.createToken,
             sendError)
 
-
-userRouter.route('/')
-  .get(getAllUsers, sendJSONresp)
-  .post(checkInvitationToken, createUser, (req, res)=> {
+userRouter.post('/', checkInvitationToken, createUser, (req, res)=> {
     if (res.error) {
 //      res.send("Got error: ", res.error);
       res.status(400).send(res.error);
@@ -37,6 +33,10 @@ userRouter.route('/')
     }
 
   })
+
+userRouter.use( tokenService.validateToken )
+
+userRouter.get('/', getAllUsers, sendJSONresp)
 
 userRouter.route('/:uID/add-attr')
   .post(addUserAttribute, sendJSONresp)
