@@ -35,7 +35,7 @@ export default class  MainProfile extends React.Component {
 
             if (data.attributes[i].attr_type === "interest") {
               console.log(data.attributes[i].attr_name)
-              // this.setState({skillName:data.attributes[i].attr_name})
+              this.setState({skillName:data.attributes[i].attr_name})
             }
             if(data.attributes[i].attr_type === "skills") {
               console.log(data.attributes[i].attr_name)
@@ -44,20 +44,12 @@ export default class  MainProfile extends React.Component {
           }
           console.log(data)
           console.log(data.attributes[0].attr_type)
-          // console.log(this.state.userData = ({userData:data.user.username}) )
-          // console.log(this.state.userData.username = ({username:data.user.username}))
-          // this.state.userData.username = ({username:data.user.username})
             this.setState({displayName:data.user.display_name});
             this.setState({username:data.user.username});
             this.setState({slack:data.user.slack})
-            if (data.attributes[0].attr_type === "interest") {
-              console.log(data.attributes[0].attr_name)
-              this.setState({skillName:data.attributes[0].attr_name})
-            }
-            if(data.attributes[0].attr_type === "skills") {
-              console.log(data.attributes[0].attr_name)
-               this.setState({interestName:data.attributes[0].attr_name})
-            }
+
+              this.setState({skillName: str });
+
             // this.setState({attrName:data.atributes.attr_name})
           // this.setState({userData: this.state.userData});
         })
