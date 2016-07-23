@@ -18,7 +18,7 @@ searchRouter.route('/interests')
 
 searchRouter.route('/users-attributes')
       .get(db.getUsersAttributes, (req,res)=> {
-        console.log(res.rows);
+        console.log(res.rows, "search Router get user attributes");
         res.json(res.rows);
     });
 // searchRouter.route('/users-interests')

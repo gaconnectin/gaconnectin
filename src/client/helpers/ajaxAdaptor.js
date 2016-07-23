@@ -28,6 +28,7 @@ export default class AjaxAdaptor {
   }
 
   getStudents(attrType, attrName) {
+    console.log('hit the gitStudent in ajaxAdaptor')
     return fetch(`/search/users-attributes?attr_type=${attrType}&attr_name=${attrName}`)
     .then(r => r.json())
     .catch(error=>{
