@@ -6,8 +6,9 @@ DROP TABLE IF EXISTS invitations;
 CREATE TABLE users (
   user_id SERIAL PRIMARY KEY NOT NULL,
   username VARCHAR(24) NOT NULL unique ,
-  password_digest VARCHAR NOT NULL,
+  password_digest TEXT NOT NULL,
   display_name VARCHAR(64) NOT NULL,
+  image_url TEXT,
   invitation_token VARCHAR(24),
   slack VARCHAR(64),
   created_at TIMESTAMP DEFAULT NOW()
@@ -16,8 +17,9 @@ CREATE TABLE users (
 CREATE TABLE attributes (
   attribute_id SERIAL PRIMARY KEY NOT NULL,
   attr_name VARCHAR(64) NOT NULL,
+  attr_name_lower VARCHAR(64) NOT NULL,
   attr_type VARCHAR(12) NOT NULL,
-  CONSTRAINT u_constraint UNIQUE (attr_name, attr_type)
+  CONSTRAINT u_constraint UNIQUE (attr_name_lower, attr_type)
 );
 
 CREATE TABLE user2attribute (
