@@ -7,18 +7,44 @@ import ajaxAdaptor          from '../helpers/ajaxAdaptor.js';
 const ajax = new ajaxAdaptor(fetch);
 
 
-export default function MainProfile(props) {
+export default class  MainProfile extends React.Component {
+
+  constructor() {
+
+    super();
+
+    this.state = {
+      userData: ["one", "two"]
+
+    }
+  }//end constructor
+
+  componentDidMount() {
+    ajax.getUserAttributes()
+        .then(data=> {
+          let newUserData= [];
+          for (var i = 0; i < data.length; i++) {
+            newUserData.push(data[i][user])
+            this.state.userAttr = newUserData
+          }
+          console.log(newUserData)
+          console.log(data.user.username)
+          console.log(data)
+
+          this.setState({userData: this.state.userData});
+        })
+          console.log(this.state.userData)
+    } //end of componentDidMount()
 
 
-
-
-
-
+  render(){
 
     return (
         <div className="container">
           <hr/>
           <h1 className="text-center">Persons name</h1>
+          <h3>{this.props.userData}</h3>
+          {/*<h3>{this.props.userData.user.slack}</h3>*/}
             <div className="row">
               <div className="col-sm-3">
                 <img src="https://dizivizi.com/mbb/imgs/site/default_user.png"/>
@@ -56,25 +82,13 @@ export default function MainProfile(props) {
                     </form>
 
 
-
-
-
-
-                   {/*} <div className="row">
-                      <div className="col-sm-6">
-                      <ProfileList />
-                      </div>
-                      <div className="col-sm-6">
-                      <SkillList />
-                      </div>
-                    </div> */}
-
               </div>
           </div>
         </div>
     )
 
 
+  } //end of render()
 
 }
 
