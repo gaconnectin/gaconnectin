@@ -14,26 +14,53 @@ export default class  MainProfile extends React.Component {
     super();
 
     this.state = {
-      userData: ["one", "two"]
+      userData: {
+        slack: [],
+        displayName:[],
+        username: [],
+        interestName:[],
+        skillName:[],
 
+      }
     }
   }//end constructor
 
-  componentDidMount() {
+  componentDidMount(event) {
     ajax.getUserAttributes()
         .then(data=> {
-          let newUserData= [];
+          let newUserData = []
           for (var i = 0; i < data.length; i++) {
-            newUserData.push(data[i][user])
+            newUserData.push(data[i])
             this.state.userAttr = newUserData
-          }
-          console.log(newUserData)
-          console.log(data.user.username)
-          console.log(data)
 
-          this.setState({userData: this.state.userData});
+            if (data.attributes[i].attr_type === "interest") {
+              console.log(data.attributes[i].attr_name)
+              // this.setState({skillName:data.attributes[i].attr_name})
+            }
+            if(data.attributes[i].attr_type === "skills") {
+              console.log(data.attributes[i].attr_name)
+               // this.setState({interestName:data.attributes[i].attr_name})
+            }
+          }
+          console.log(data)
+          console.log(data.attributes[0].attr_type)
+          // console.log(this.state.userData = ({userData:data.user.username}) )
+          // console.log(this.state.userData.username = ({username:data.user.username}))
+          // this.state.userData.username = ({username:data.user.username})
+            this.setState({displayName:data.user.display_name});
+            this.setState({username:data.user.username});
+            this.setState({slack:data.user.slack})
+            if (data.attributes[0].attr_type === "interest") {
+              console.log(data.attributes[0].attr_name)
+              this.setState({skillName:data.attributes[0].attr_name})
+            }
+            if(data.attributes[0].attr_type === "skills") {
+              console.log(data.attributes[0].attr_name)
+               this.setState({interestName:data.attributes[0].attr_name})
+            }
+            // this.setState({attrName:data.atributes.attr_name})
+          // this.setState({userData: this.state.userData});
         })
-          console.log(this.state.userData)
     } //end of componentDidMount()
 
 
@@ -42,9 +69,10 @@ export default class  MainProfile extends React.Component {
     return (
         <div className="container">
           <hr/>
-          <h1 className="text-center">Persons name</h1>
-          <h3>{this.props.userData}</h3>
-          {/*<h3>{this.props.userData.user.slack}</h3>*/}
+          <h1 className="text-center">{this.state.displayName}</h1>
+          {/*<h3 userData={this.state.userData}></h3>*/}
+
+          <h3>User Name: {this.state.username}</h3>
             <div className="row">
               <div className="col-sm-3">
                 <img src="https://dizivizi.com/mbb/imgs/site/default_user.png"/>
@@ -55,20 +83,14 @@ export default class  MainProfile extends React.Component {
                       <div className="col-sm-10">
                         <h3>Skills</h3>
                           <ul className="skillsPrint">
-                              <li>users skills </li>
-                              <li>users skills </li>
-                              <li>users skills </li>
+                              <li>{this.state.skillName}</li>
                           </ul>
                           {/*<br/>*/}
                           <h3>Interests</h3>
                           <ul className="interestsPrint">
-                              <li>users Interests </li>
-                              <li>users Interests </li>
-                              <li>users Interests </li>
+                              <li>{this.state.interestName} </li>
                           </ul>
-                        <label htmlFor="inputPassword3" className="col-sm-2 control-label">user slackname</label>
-
-
+                        <label htmlFor="slack-user-name" className="col-sm-2 control-label">Slack: {this.state.slack}</label>
                       </div>
                      </div>
                     </form>

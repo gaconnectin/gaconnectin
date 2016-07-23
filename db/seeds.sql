@@ -8,7 +8,10 @@ INSERT INTO users
   VALUES
   ('password',' Aaron A','Aaron Aaronson', 'a_son'),
   ('password','John D','John Darby', 'git_kong'),
-  ('password','Rubi L','Rubi Lenowitz', 'dolphinecutie') ;
+  ('password','Jeff M','Jeffrey Mugsworth', 'git_the_gawd'),
+  ('password','Rubi L','Rubi Lenowitz', 'dolphinecutie'),
+  ('password','Jax S','Jackson Shaw', 'texas_raider'),
+  ('password','Jessica M','Jessica Martinez', 'flower_power_girl');
 
 INSERT INTO invitations
   (invitation_token)
@@ -62,5 +65,19 @@ INSERT INTO user2attribute
   (3,6),
   (3,3),
   (3,9),
-  (3,25) ;
+  (3,25),
+  (4,25),
+  (4,1),
+  (4,4),
+  (4,3),
+  (4,22),
+  (5,1),
+  (5,4),
+  (5,7),
+  (5,19),
+  (5,1),
+  (6,6),
+  (6,3),
+  (6,9),
+  (6,25) ;
 
