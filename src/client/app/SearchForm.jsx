@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchOption from './SearchOption.jsx'
+import DisplayResult from './DisplayResult.jsx'
 
 import ajaxAdaptor          from '../helpers/ajaxAdaptor.js';
 
@@ -16,11 +17,12 @@ constructor() {
     this.state = {
       skills: ["one", "two", "three"],
       userChoice: "One",
-    }
+      studentList: []
+    } //end state
 }//end constructor
 
 componentDidMount(){
-
+  //hit the db for the freshest list of skills
     ajax.getSkills().then( data=> {
       let newData = [];
       for(let i = 0; i < data.length; i++){
@@ -42,21 +44,29 @@ getUsersChoice(event){
 
   //render the appropriate div from searchOption component
     this.state.userChoice = userOption;
-    this.setState({userChoice: this.state.userChoice});
+    this.setState({userChoice: userOption});
 
   }//end getUserChoice
 
 
 
-  getStudentWithSkill(){
+  getStudentWithSkill(event){
+    let self = this
+    event.preventDefault()
     //return students with selected skill
     let selected = document.getElementById( "skill" );
-    let userOption = (selected.options[ selected.selectedIndex ].value);
-    console.log(userOption);
-
+    let studentSkill = (selected.options[ selected.selectedIndex ].value);
+    let skills = "skills"
+    let allStudents = []
     //need function to return students that have the matching skill set
-
+    ajax.getStudents(skills, studentSkill).then( students=> {
+      //returns array of students with the chosen skill
+       this.state.studentList = students
+       this.setState({studentList: this.state.studentList})
+    }).catch(error=> {throw error})//end catch
     //then pass this data to DisplayResults Component
+
+    console.log(this.state.studentList)
 
   }//end getStudentWithSkill
 
@@ -66,12 +76,16 @@ getUsersChoice(event){
     event.preventDefault()
 
     //this gets the value of the input is typed
-    let typedInput = event.target.value;
-    console.log(typedInput);
-
+    let studentInterest = event.target.value;
+    console.log(studentInterest);
+    let interest = "interest"
+    let allStudents = []
     //currently this is just returning all Interests, it is not based on the input value
-    ajax.getInterests().then( data=> {
-      console.log(data)
+    ajax.getStudents(interest, studentInterest).then( students=> {
+      console.log('promise returned in getStudentInterest ajax call')
+      console.log(students)
+      this.state.studentList = student
+      this.setState({studentList: this.state.studentList})
       }
     )
   }//end getStudentWithInterest
@@ -86,7 +100,8 @@ render(){
             <h2>WELCOME to Ga ConnectIN! PLease search</h2>
           <form onClick={this.getUsersChoice.bind(this)}>
               <div>
-                <select name="choice" id="choice">
+                <select name="choice" defaultValue="choose" id="choice">
+                  <option value="choose" disabled>Choose</option>
                   <option name="skills" value="skills">Skill</option>
                   <option name="choice" value="interests">Interest</option>
                 </select>
@@ -102,7 +117,11 @@ render(){
               getStudentWithInterest={this.getStudentWithInterest.bind(this)}
               getStudentWithSkill={this.getStudentWithSkill.bind(this)}
               />
+               <div>
+         <DisplayResult showAllStudents={this.state.studentList} />
         </div>
+        </div>
+
       )
    }
 }
