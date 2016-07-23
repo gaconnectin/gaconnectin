@@ -7,9 +7,6 @@ const ajax = new ajaxAdaptor(fetch);
 
 
 
-
-
-
 export default class SearchForm extends React.Component{
 
 constructor() {
@@ -18,74 +15,94 @@ constructor() {
 
     this.state = {
       skills: ["one", "two", "three"],
-      userChoice: 'skills'
+      userChoice: "One",
     }
-}
+}//end constructor
+
 componentDidMount(){
 
-  console.log('ComponentDidMount')
     ajax.getSkills().then( data=> {
       let newData = [];
-       console.log(data[0]['attr_name'], 'insidePromise')
       for(let i = 0; i < data.length; i++){
         newData.push(data[i]['attr_name'])
         this.state.skills = newData;
       }
-      this.setState({skills: this.state.skills})
-    }
-    )
+      this.setState({skills: this.state.skills});
+     }
+   )
+  }//end componentDidMount
 
-  }
-
-handleUserOption(event){
-    event.preventDefault();
-    // this is the drop down input
-    // console.log(event.target.options[event.target.selectedIndex].text);
-    //this is the text input
-    console.log('clicked');
-
-  }
-
-
-handleDropDown(event){
-
-    event.preventDefault();
+getUsersChoice(event){
+  //get initial selection from user to search interests or skills
+    event.preventDefault()
 
     let selected = document.getElementById( "choice" );
+    let userOption = (selected.options[ selected.selectedIndex ].value);
 
-    let userChoice = selected.options[ selected.selectedIndex ].value;
-    console.log(userChoice)
-    this.state.userChoice = userChoice
 
-    this.setState({userChoice: this.state.userChoice})
+  //render the appropriate div from searchOption component
+    this.state.userChoice = userOption;
+    this.setState({userChoice: this.state.userChoice});
 
-  }
+  }//end getUserChoice
+
+
+
+  getStudentWithSkill(){
+    //return students with selected skill
+    let selected = document.getElementById( "skill" );
+    let userOption = (selected.options[ selected.selectedIndex ].value);
+    console.log(userOption);
+
+    //need function to return students that have the matching skill set
+
+    //then pass this data to DisplayResults Component
+
+  }//end getStudentWithSkill
+
+
+  getStudentWithInterest(event){
+    //return students with same interests using input box
+    event.preventDefault()
+
+    //this gets the value of the input is typed
+    let typedInput = event.target.value;
+    console.log(typedInput);
+
+    //currently this is just returning all Interests, it is not based on the input value
+    ajax.getInterests().then( data=> {
+      console.log(data)
+      }
+    )
+  }//end getStudentWithInterest
 
 
 render(){
-
-
 
     return (
 
         <div className="row text-center">
           <hr />
-          <h2>WELCOME to Ga ConnectIN! PLease search</h2>
-          <form onSubmit={this.handleDropDown}>
-          <div>
-            <select name="choice" id="choice">
-              <option name="skills" value="skills">Skill</option>
-              <option name="choice" value="interest">Interest</option>
-            </select>
-          </div>
-          <div>
-            <button className="btn btn-success">Search</button>
-          </div>
+            <h2>WELCOME to Ga ConnectIN! PLease search</h2>
+          <form onClick={this.getUsersChoice.bind(this)}>
+              <div>
+                <select name="choice" id="choice">
+                  <option name="skills" value="skills">Skill</option>
+                  <option name="choice" value="interests">Interest</option>
+                </select>
+              </div>
+              <div>
+                <button className="btn btn-success">Search</button>
+              </div>
           </form>
-          <hr />
-          <SearchOption userSkill={this.state.skills} userChoice={this.state.userChoice}/>
+            <hr />
+              <SearchOption
+              userSkill={this.state.skills}
+              userChoice={this.state.userChoice}
+              getStudentWithInterest={this.getStudentWithInterest.bind(this)}
+              getStudentWithSkill={this.getStudentWithSkill.bind(this)}
+              />
         </div>
       )
-
-  }
+   }
 }
