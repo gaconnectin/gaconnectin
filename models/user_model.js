@@ -25,7 +25,7 @@ function createSecure(username, password, display_name, slack, callback) {
 
 function checkInvitationToken(req, res, next) {
   console.log('In checkInvitationToken. req.body =', req.body)
- _db.any(`SELECT * 
+ _db.any(`SELECT *
           FROM invitations
           WHERE invitation_token=$1`,[req.body.invitation_token])
           .then(data => {
@@ -60,7 +60,7 @@ function createUser(req, res, next) {
     res.error = "No Valid Invitation Token given";
     next();
   }
-} 
+}
 
 
 function updateUser(req,res,next) {
@@ -124,7 +124,7 @@ where users.user_id=$1`,[req.params.uID])
 }
 
 function getUser(req,res,next) {
-  _db.one(`SELECT * 
+  _db.one(`SELECT *
           FROM users
           WHERE user_id=$1`,[req.params.uID])
           .then(data => {
@@ -154,10 +154,10 @@ function addUserAttribute(req,res,next) {
   console.log(`attr_name = ${req.body.attr_name}, attr_type = ${req.body.attr_type}`);
   _db.any(`with inserted as (
             insert into attributes (attr_name, attr_type)
-            values($1, $2) ON CONFLICT (attr_name, attr_type) 
+            values($1, $2) ON CONFLICT (attr_name, attr_type)
             DO UPDATE SET attr_name = EXCLUDED.attr_name returning *
          )
-         insert into user2attribute(user_id,attribute_id) 
+         insert into user2attribute(user_id,attribute_id)
          select $3, inserted.attribute_id from inserted;`,[req.body.attr_name, req.body.attr_type, req.params.uID])
           .then(data => {
             res.rows = data;
@@ -202,6 +202,6 @@ function deleteUserAttribute(req,res,next) {
         });
   }
 }
-module.exports = { getUserAttributes, getAllUsers, getUser, createUser, checkInvitationToken, 
+module.exports = { getUserAttributes, getAllUsers, getUser, createUser, checkInvitationToken,
                    updateUser, deleteUser, addUserAttribute, findUserAttributeId,
                    deleteUserAttribute};

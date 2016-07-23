@@ -15,6 +15,17 @@ export default class AjaxAdaptor {
     return fetch('/search/interests')
     .then(r => r.json())
   }
+  // Getting user attributes by ":uID"
+  getUserAttributes() {
+    return fetch('/user/2')
+    .then(r=> r.json())
+    console.log(r)
+  }
+  getUser() {
+    return fetch('user/2')
+    .then(r=> r.json())
+    console.log(r)
+  }
 
   getStudents(attrType, attrName) {
     console.log('hit the getStudents AjaxAdapter with ', attrType, attrName)
