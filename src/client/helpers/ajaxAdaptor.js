@@ -28,9 +28,14 @@ export default class AjaxAdaptor {
   }
 
   getStudents(attrType, attrName) {
-    console.log('hit the getStudents AjaxAdapter with ', attrType, attrName)
-    return fetch(`/search/user-attributes?attr_type=${attrType}&attr_name=${attrName}`)
+    return fetch(`/search/users-attributes?attr_type=${attrType}&attr_name=${attrName}`)
     .then(r => r.json())
+    .catch(error=>{
+      throw error
+    })
+
   }
 
-}
+
+
+}//end Ajax Adaptor

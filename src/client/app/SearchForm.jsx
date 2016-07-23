@@ -16,8 +16,9 @@ constructor() {
 
     this.state = {
       skills: ["one", "two", "three"],
-      userChoice: "One"
-    }
+      userChoice: "One",
+      studentList: []
+    } //end state
 }//end constructor
 
 componentDidMount(){
@@ -50,19 +51,22 @@ getUsersChoice(event){
 
 
   getStudentWithSkill(event){
+    let self = this
     event.preventDefault()
     //return students with selected skill
     let selected = document.getElementById( "skill" );
     let studentSkill = (selected.options[ selected.selectedIndex ].value);
-    console.log(studentSkill);
-
+    let skills = "skills"
+    let allStudents = []
     //need function to return students that have the matching skill set
-    ajax.getStudents("skills", studentSkill).then(data=>{
+    ajax.getStudents(skills, studentSkill).then( students=> {
+      //returns array of students with the chosen skill
+       this.state.studentList = students
+    }).catch(error=> {throw error})//end catch
 
-      console.log(data);
-    }
-    )
     //then pass this data to DisplayResults Component
+    this.setState({studentList: this.state.studentList})
+    console.log(this.state.studentList)
 
   }//end getStudentWithSkill
 
