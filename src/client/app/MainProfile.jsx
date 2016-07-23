@@ -26,32 +26,19 @@ export default class  MainProfile extends React.Component {
   }//end constructor
 
   componentDidMount(event) {
+    let string = []
     ajax.getUserAttributes()
         .then(data=> {
           let newUserData = []
-          for (var i = 0; i < data.length; i++) {
-            newUserData.push(data[i])
-            this.state.userAttr = newUserData
 
-            if (data.attributes[i].attr_type === "interest") {
-              console.log(data.attributes[i].attr_name)
-              this.setState({skillName:data.attributes[i].attr_name})
-            }
-            if(data.attributes[i].attr_type === "skills") {
-              console.log(data.attributes[i].attr_name)
-               // this.setState({interestName:data.attributes[i].attr_name})
-            }
-          }
           console.log(data)
           console.log(data.attributes[0].attr_type)
             this.setState({displayName:data.user.display_name});
             this.setState({username:data.user.username});
             this.setState({slack:data.user.slack})
 
-              this.setState({skillName: str });
-
-            // this.setState({attrName:data.atributes.attr_name})
-          // this.setState({userData: this.state.userData});
+              this.setState({skillName:data.attributes[3].attr_name})
+              this.setState({interestName:data.attributes[0].attr_name})
         })
     } //end of componentDidMount()
 
