@@ -63,7 +63,6 @@ getUsersChoice(event){
       //returns array of students with the chosen skill
        this.state.studentList = students
     }).catch(error=> {throw error})//end catch
-
     //then pass this data to DisplayResults Component
     this.setState({studentList: this.state.studentList})
     console.log(this.state.studentList)
@@ -114,7 +113,7 @@ render(){
               getStudentWithSkill={this.getStudentWithSkill.bind(this)}
               />
                <div>
-         {/* <DisplayResult /> */}
+         <DisplayResult showAllStudents={this.state.studentList} />
         </div>
         </div>
 
