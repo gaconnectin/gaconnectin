@@ -54,8 +54,7 @@ ReactDOM.render((
       <Route path='/login' component={LoginUser} dummy={x=>x}/>
       <Route path='/create-account' component={CreateUser} />
       <Route path='/logout' component={SearchForm} />
-      <Route path='/user-profile' component={Profile} />
-      <Route path='/user-mainprofile' component={MainProfile} />
+      <Route path='/profile/user/:userID' component={MainProfile} />
 
     </Route>
   </Router>

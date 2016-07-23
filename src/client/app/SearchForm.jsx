@@ -44,7 +44,7 @@ getUsersChoice(event){
 
   //render the appropriate div from searchOption component
     this.state.userChoice = userOption;
-    this.setState({userChoice: this.state.userChoice});
+    this.setState({userChoice: userOption});
 
   }//end getUserChoice
 
@@ -62,9 +62,10 @@ getUsersChoice(event){
     ajax.getStudents(skills, studentSkill).then( students=> {
       //returns array of students with the chosen skill
        this.state.studentList = students
+       this.setState({studentList: this.state.studentList})
     }).catch(error=> {throw error})//end catch
     //then pass this data to DisplayResults Component
-    this.setState({studentList: this.state.studentList})
+
     console.log(this.state.studentList)
 
   }//end getStudentWithSkill
