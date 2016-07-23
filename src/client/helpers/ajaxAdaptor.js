@@ -18,7 +18,7 @@ export default class AjaxAdaptor {
   }
   // Getting user attributes by ":uID"
   getUserAttributes() {
-    return fetch('/user/2')
+    return fetch('/user/3')
     .then(r=> r.json())
     console.log(r)
   }
