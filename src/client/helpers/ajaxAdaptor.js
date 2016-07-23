@@ -16,6 +16,17 @@ export default class AjaxAdaptor {
     .then(r => r.json())
     console.log(r)
   }
+  // Getting user attributes by ":uID"
+  getUserAttributes() {
+    return fetch('/user/2')
+    .then(r=> r.json())
+    console.log(r)
+  }
+  getUser() {
+    return fetch('user/2')
+    .then(r=> r.json())
+    console.log(r)
+  }
 
 
 }

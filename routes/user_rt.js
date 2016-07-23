@@ -1,12 +1,12 @@
 const userRouter = require('express').Router();
 const { getUserAttributes,
-        getAllUsers, 
-        getUser, 
-        createUser, 
-        checkInvitationToken, 
-        updateUser, 
-        deleteUser, 
-        addUserAttribute , 
+        getAllUsers,
+        getUser,
+        createUser,
+        checkInvitationToken,
+        updateUser,
+        deleteUser,
+        addUserAttribute ,
         findUserAttributeId,
         deleteUserAttribute } = require('../models/user_model');
 
