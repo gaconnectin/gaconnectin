@@ -11,11 +11,15 @@ export default class AjaxAdaptor {
     }
 
   getInterests() {
-    console.log("hit getInterest AjaxAdapter")
+    console.log('hit getInterest AjaxAdapter')
     return fetch('/search/interests')
     .then(r => r.json())
-    console.log(r)
   }
 
+  getStudents(attrType, attrName) {
+    console.log('hit the getStudents AjaxAdapter with ', attrType, attrName)
+    return fetch(`/search/user-attributes?attr_type=${attrType}&attr_name=${attrName}`)
+    .then(r => r.json())
+  }
 
 }

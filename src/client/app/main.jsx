@@ -11,8 +11,6 @@ import { Link }                                      from 'react-router'
 import CreateUser       from './CreateUser.jsx';
 import LoginUser        from './LoginUser.jsx';
 import SearchForm       from './SearchForm.jsx';
-import SearchOption     from './SearchOption.jsx';
-import DisplayResults   from './DisplayResult.jsx';
 import Profile          from './Profile.jsx';
 import MainProfile      from './MainProfile.jsx';
 

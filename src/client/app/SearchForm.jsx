@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchOption from './SearchOption.jsx'
+import DisplayResult from './DisplayResult.jsx'
 
 import ajaxAdaptor          from '../helpers/ajaxAdaptor.js';
 
@@ -15,7 +16,7 @@ constructor() {
 
     this.state = {
       skills: ["one", "two", "three"],
-      userChoice: "One",
+      userChoice: "One"
     }
 }//end constructor
 
@@ -48,14 +49,19 @@ getUsersChoice(event){
 
 
 
-  getStudentWithSkill(){
+  getStudentWithSkill(event){
+    event.preventDefault()
     //return students with selected skill
     let selected = document.getElementById( "skill" );
-    let userOption = (selected.options[ selected.selectedIndex ].value);
-    console.log(userOption);
+    let studentSkill = (selected.options[ selected.selectedIndex ].value);
+    console.log(studentSkill);
 
     //need function to return students that have the matching skill set
+    ajax.getStudents("skills", studentSkill).then(data=>{
 
+      console.log(data);
+    }
+    )
     //then pass this data to DisplayResults Component
 
   }//end getStudentWithSkill
@@ -86,7 +92,8 @@ render(){
             <h2>WELCOME to Ga ConnectIN! PLease search</h2>
           <form onClick={this.getUsersChoice.bind(this)}>
               <div>
-                <select name="choice" id="choice">
+                <select name="choice" defaultValue="choose" id="choice">
+                  <option value="choose" disabled>Choose</option>
                   <option name="skills" value="skills">Skill</option>
                   <option name="choice" value="interests">Interest</option>
                 </select>
@@ -102,7 +109,11 @@ render(){
               getStudentWithInterest={this.getStudentWithInterest.bind(this)}
               getStudentWithSkill={this.getStudentWithSkill.bind(this)}
               />
+               <div>
+         {/* <DisplayResult /> */}
         </div>
+        </div>
+
       )
    }
 }

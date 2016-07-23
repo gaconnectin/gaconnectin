@@ -1,5 +1,16 @@
 import React from 'react';
 
+const Person = ({
+name,
+img,
+getProfile
+}) => (
+  <li>
+    onClick={()=> getProfile(id)}>
+    {person.name}
+  </li>
+)
+
 const DisplayResult = props=>
 
   <div className="container">
