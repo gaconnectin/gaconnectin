@@ -21,7 +21,7 @@ constructor() {
 }//end constructor
 
 componentDidMount(){
-
+  //hit the db for the freshest list of skills
     ajax.getSkills().then( data=> {
       let newData = [];
       for(let i = 0; i < data.length; i++){
