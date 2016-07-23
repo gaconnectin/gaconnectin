@@ -106,12 +106,29 @@ function updateUser(req,res,next) {
 
 }
 
+function getUserAttributes(req,res,next) {
+  console.log('In getUserAttributes for user ', req.params.uID);
+  _db.any(`select attributes.attr_name, attributes.attr_type
+FROM users NATURAL INNER JOIN user2attribute NATURAL INNER JOIN attributes
+where users.user_id=$1`,[req.params.uID])
+          .then(data => {
+            console.log('data = ', data);
+            res.attributes = data;
+            next();
+          })
+          .catch( error => {
+            console.log('Error ', error);
+          })
+
+
+}
+
 function getUser(req,res,next) {
   _db.one(`SELECT * 
           FROM users
-          WHERE user_id=$1`,[req.params.id])
+          WHERE user_id=$1`,[req.params.uID])
           .then(data => {
-            res.rows = data;
+            res.user = data;
             next();
           })
           .catch( error => {
@@ -185,6 +202,6 @@ function deleteUserAttribute(req,res,next) {
         });
   }
 }
-module.exports = { getAllUsers, getUser, createUser, checkInvitationToken, 
+module.exports = { getUserAttributes, getAllUsers, getUser, createUser, checkInvitationToken, 
                    updateUser, deleteUser, addUserAttribute, findUserAttributeId,
                    deleteUserAttribute};

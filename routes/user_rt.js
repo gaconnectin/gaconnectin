@@ -1,5 +1,6 @@
 const userRouter = require('express').Router();
-const { getAllUsers, 
+const { getUserAttributes,
+        getAllUsers, 
         getUser, 
         createUser, 
         checkInvitationToken, 
@@ -9,8 +10,20 @@ const { getAllUsers,
         findUserAttributeId,
         deleteUserAttribute } = require('../models/user_model');
 
+const tokenService = require('../service/tokens.js');
+
 /* convenience method for sending */
 const sendJSONresp = (req,res)=>res.json(res.rows)
+const sendError = (err,req,res,next)=>res.status(401).json(err)
+
+//userRouter.use( tokenService.validateToken )
+
+  /* This is whre the user logs in */
+userRouter.post('/authenticate',
+            getUser,
+            tokenService.createToken,
+            sendError)
+
 
 userRouter.route('/')
   .get(getAllUsers, sendJSONresp)
@@ -25,6 +38,10 @@ userRouter.route('/')
   })
 
 userRouter.route('/:uID')
+  .get(getUserAttributes, getUser, (req, res) => {
+    return res.json({user: res.user,
+            attributes: res.attributes});
+  })
   .put(updateUser, sendJSONresp)
   .delete(deleteUser, sendJSONresp)
 
