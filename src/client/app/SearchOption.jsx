@@ -2,22 +2,21 @@ import React from 'react';
 
 
 export default function SearchOption(props){
-  console.log(props.userChoice)
-  if(props.userChoice == 'skills'){
-    return(
 
+  if(props.userChoice === 'skills'){
+    //show this div if user wants to see skills
+    return(
           <div className="row text-center">
             <div>
-              <form>
-
-              <h2>I want to find someone who likes</h2>
-                 <select>
+              <h2>I want to find someone who can help me with:</h2>
+              <form onClick={props.getStudentWithSkill}>
+                 <select id="skill">
+                  {/*Return results from the db, population the options*/}
                     {props.userSkill.map(function(item, index){
                       return <option key={index}>{item}</option>
                     })}
 
                  </select>
-
                 <button className="btn btn-default" type="submit">FIND!</button>
               </form>
             </div>
@@ -25,43 +24,29 @@ export default function SearchOption(props){
           </div>
     )
 
-  } else {
-
+  } else if (props.userChoice === 'interests') {
+    //show this div is user chose interest:
     return (
         <div className="row text-center">
                 <div>
+                  <h2>I want to find someone who likes:</h2>
                   <form>
-
-                  <h2>ATTR</h2>
-
-
-                    <input name="interest" type="text" placeholder="enter an interest here"/>
+                     {/*Return options from the database for onchange type events*/}
+                    <input onChange={props.getStudentWithInterest} name="interest" type="text" placeholder="enter an interest here"/>
                     <button className="btn btn-default" type="submit">FIND!</button>
                   </form>
                 </div>
                 <hr />
               </div>
-
-
       )
 
+  } else {
+    //IF there are no options, do not render anything until user makes a selection
+    return(
 
-
+          <div></div>
+      )
   }
-
-
-
 
 }
 
-
-
-
-
-
-//   React.Children.map(props.children, child=>
-                  // React.cloneElement(child, {
-                  //   onClick: clickDelete(key)
-                  // }))
-
-//jsx show if/skill or value
