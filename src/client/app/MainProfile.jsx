@@ -102,11 +102,11 @@ export default class  MainProfile extends React.Component {
                       </div>
                     <div className="row text-center">
                       <hr />
-                      <button className="btn btn-default btn-success">EDIT PROFILE</button>
+                      <button onClick={this.toggleEdit.bind(this)} className="btn btn-success "> EDIT PROFILE</button>
                       <hr />
                     </div>
-         </div>//end container
-
+         </div>
+  //end container
     )
        } else {
          return (
