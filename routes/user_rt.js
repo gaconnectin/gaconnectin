@@ -34,7 +34,7 @@ userRouter.post('/', checkInvitationToken, createUser, (req, res)=> {
 
   })
 
-userRouter.use( tokenService.validateToken )
+// userRouter.use( tokenService.validateToken )
 
 userRouter.get('/', getAllUsers, sendJSONresp)
 
