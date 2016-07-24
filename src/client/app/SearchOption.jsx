@@ -1,5 +1,6 @@
 import React from 'react';
-
+import ReactDataList from 'react-datalist'
+let interests = ['hiking', 'swimming']
 
 export default function SearchOption(props){
 
@@ -32,7 +33,8 @@ export default function SearchOption(props){
                   <h2>I want to find someone who likes:</h2>
                   <form>
                      {/*Return options from the database for onchange type events*/}
-                    <input onChange={props.getStudentWithInterest} name="interest" type="text" placeholder="enter an interest here"/>
+                    {/*<input onChange={props.getStudentWithInterest} name="interest" type="text" placeholder="enter an interest here"/>*/}
+                    <ReactDataList list="interest" options={interests} />
                     <button className="btn btn-default" type="submit">FIND!</button>
                   </form>
                 </div>
