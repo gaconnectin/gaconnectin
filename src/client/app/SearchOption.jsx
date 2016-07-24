@@ -35,7 +35,7 @@ export default function SearchOption(props){
                   <h2>I want to find someone who likes:</h2>
                    <form className="form-inline">
                  <div className="form-group">
-                 <select className="form-control" id="skill">
+                 <select className="form-control" id="interest">
                   {/*Return results from the db, population the options*/}
                     {props.userInterest.map(function(item, index){
                       return <option key={index}>{item}</option>

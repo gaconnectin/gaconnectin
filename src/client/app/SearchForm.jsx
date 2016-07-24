@@ -84,19 +84,21 @@ getUsersChoice(event){
 
 
   getStudentWithInterest(event){
+    let self = this
     //return students with same interests using input box
     event.preventDefault()
 
-    //this gets the value of the input is typed
-    let studentInterest = event.target.value;
-    console.log(studentInterest);
+    //return student with desired interest
+    let selected = document.getElementById( "interest" );
+    let studentInterest = (selected.options[ selected.selectedIndex ].value);
     let interest = "interest"
     let allStudents = []
+
     //currently this is just returning all Interests, it is not based on the input value
     ajax.getStudents(interest, studentInterest).then( students=> {
       console.log('promise returned in getStudentInterest ajax call')
       console.log(students)
-      this.state.studentList = student
+      this.state.studentList = students
       this.setState({studentList: this.state.studentList})
       }
     )
