@@ -13,16 +13,17 @@ module.exports = {
     path: BUILD_DIR,
     filename: '/js/[name].js',
   },
-
+  cache: true,
+  debut: true,
+  devtook: 'eval-source-map',
+  stats: {
+    colors: true,
+    reasons: true
+  },
   plugins: [
-     new webpack.optimize.UglifyJsPlugin({
-      compress:{
-        warnings: true
-      }
-    }),
     new webpack.optimize.CommonsChunkPlugin('/js/common.js'),
     new HtmlWebpackPlugin({
-      title: 'Tasks',
+      title: 'GaConnectin',
       xhtml: true,
       inject: false,
       template: require('html-webpack-template'),
