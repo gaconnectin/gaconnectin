@@ -5,15 +5,9 @@ import ajaxAdaptor          from '../helpers/ajaxAdaptor.js';
 
 const ajax = new ajaxAdaptor(fetch);
 
-export default class Footer extends React.Component{
-  render(){
-    return (
-      <h1>{this.props.children}</h1>
-      )
 
-  }
 
-}
+
 
 export default class ProfileList extends React.Component {
 
@@ -35,6 +29,7 @@ export default class ProfileList extends React.Component {
     }
   }//end constructor
 
+
   componentDidMount() {
 
     ajax.getHeidiUser()
@@ -51,18 +46,30 @@ export default class ProfileList extends React.Component {
 
     } //end of componentDidMount()
 
-  setEditProfile(){
-
+  updateUserName(event){
+    event.preventDefault()
+    console.log(event.target.name.value)
+    ajax.getUserAttributes()
+        .then(data=> {})
   }
+
+  updateUserSlack(event){
+    event.preventDefault()
+    console.log(event.target.slack.value)
+    ajax.getUserAttributes()
+        .then(data=> {})
+  }
+
 
   render(){
 
     const userProfileId = this.props.params.userId;
     console.log(userProfileId, "in render")
+    if(this.state.editProfile===false){
 
-      if(this.state.renderProfile===false){
+      return(
 
-          return (
+           return (
                     <div className="container">
                       <hr/>
                       <h1 className="text-center">{this.state.displayName}</h1>
@@ -86,7 +93,7 @@ export default class ProfileList extends React.Component {
                                       <ul className="interestsPrint">
                                           <li>{this.state.interestName} </li>
                                       </ul>
-                                    <label htmlFor="slack-user-name" className="col-sm-2 control-label">Slack: {this.state.slack}</label>
+                                    <label className="col-sm-2 control-label">Slack: {this.state.slack}</label>
                                   </div>
                                  </div>
                                 </form>
@@ -106,13 +113,12 @@ export default class ProfileList extends React.Component {
                     </div>
                 )
 
-      } else {
+        )
 
-        return(
+    }
 
-          <div>HELLO</div>
-          )
-      }
+
+
 
 
 

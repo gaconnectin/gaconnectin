@@ -16,7 +16,7 @@ render(){
                   <h3>{student.display_name}</h3>
                   <img src="https://dizivizi.com/mbb/imgs/site/default_user.png"/>
                     <section className="profile-link">
-                      <form action={`heiditest/user/${student.user_id}`} method="get">
+                      <form action={`profile/user/${student.user_id}`} method="get">
                       {/*<Link className="btn btn-success" to={`heiditest/user/${student.user_id}`}>Visit Profile</Link>*/}
                       <button type="submit" className="btn btn-success">Visit Profile</button>
                       </form>

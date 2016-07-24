@@ -15,28 +15,13 @@ export default class AjaxAdaptor {
     return fetch('/search/interests')
     .then(r => r.json())
   }
-  // Getting user attributes by ":uID"
-  getUserAttributes() {
-    return fetch('/user/3')
-    .then(r=> r.json())
-    console.log(r)
-  }
-  getUser() {
-    return fetch('user/2')
-    .then(r=> r.json())
-    console.log(r)
-  }
 
-  getHeidiUser(id) {
-    console.log('hit Heidi Route')
-    let setId =location.pathname.split('/')
-    setId = parseInt(setId[setId.length-1])
-
-   return fetch(`/user/${setId}`)
+  getUserAttributes(id) {
+    let setId = location.pathname.split('/')
+    setId = parseInt(setId[setId.length -1])
+    return fetch(`/user/${setId}`)
     .then(r=> r.json())
   }
-
-
 
   getStudents(attrType, attrName) {
     console.log('hit the gitStudent in ajaxAdaptor')
