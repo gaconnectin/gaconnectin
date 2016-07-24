@@ -16,11 +16,14 @@ searchRouter.route('/skills')
 searchRouter.route('/interests')
       .get(db.getInterest, (req,res)=>res.json(res.rows));
 
-searchRouter.route('skills/:id')
-      .put(db.getASkill, sendJSONresp);
+searchRouter.route('/users-attributes')
+      .get(db.getUsersAttributes, (req,res)=> {
+        console.log(res.rows, "search Router get user attributes");
+        res.json(res.rows);
+    });
+// searchRouter.route('/users-interests')
+//       .get(db.getUsersInterest, (req,res)=>res.json(res.rows));
 
-searchRouter.route('skills/:u2aID')
-      .put(db.getASkill, sendJSONresp);
 
 
 module.exports = searchRouter;

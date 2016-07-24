@@ -1,6 +1,7 @@
-DELETE FROM  users ;
+DELETE FROM users ;
 DELETE FROM attributes ;
 DELETE FROM user2attribute ;
+DELETE FROM invitations ;
 
 
 INSERT INTO users
@@ -8,38 +9,48 @@ INSERT INTO users
   VALUES
   ('password',' Aaron A','Aaron Aaronson', 'a_son'),
   ('password','John D','John Darby', 'git_kong'),
-  ('password','Rubi L','Rubi Lenowitz', 'dolphinecutie') ;
+  ('password','Jeff M','Jeffrey Mugsworth', 'git_the_gawd'),
+  ('password','Rubi L','Rubi Lenowitz', 'dolphinecutie'),
+  ('password','Jax S','Jackson Shaw', 'texas_raider'),
+  ('password','Jessica M','Jessica Martinez', 'flower_power_girl');
 
+INSERT INTO invitations
+  (invitation_token)
+  VALUES
+  ('guest'),
+  ('test1'),
+  ('test2'),
+  ('test3') ;
 
 
 INSERT INTO attributes
-  (attr_name, attr_type)
+  (attr_name, attr_name_lower, attr_type)
   VALUES
-  ('comic books', 'interest'),
-  ('social drinking', 'interest'),
-  ('horse back riding', 'interest'),
-  ('biking', 'interest'),
-  ('movies', 'interest'),
-  ('swimming', 'interest'),
-  ('hiking', 'interest'),
-  ('foodie', 'interest'),
-  ('video games', 'interest'),
-  ('Pokemon', 'interest'),
-  ('cross training', 'interest'),
-  ('running', 'interest'),
-  ('walk', 'interest'),
-  ('chess', 'interest'),
-  ('gardening', 'interest'),
-  ('cat lover', 'interest'),
-  ('smoking', 'interest'),
-  ('climbing', 'interest'),
-  ('JavaScript', 'skills'),
-  ('Node.js', 'skills'),
-  ('CSS', 'skills'),
-  ('React.js', 'skills'),
-  ('HTML', 'skills'),
-  ('PostgresSQL', 'skills'),
-  ('SQL', 'skills') ;
+  ('comic books', 'comic books', 'interest'),
+  ('social drinking', 'social drinking', 'interest'),
+  ('horse back riding', 'horse back riding', 'interest'),
+  ('biking', 'biking',  'interest'),
+  ('movies', 'movies', 'interest'),
+  ('swimming','swimming', 'interest'),
+  ('hiking', 'hiking', 'interest'),
+  ('foodie', 'foodie', 'interest'),
+  ('video games', 'video games', 'interest'),
+  ('Pokemon', 'pokemon', 'interest'),
+  ('cross training', 'cross training', 'interest'),
+  ('running', 'running', 'interest'),
+  ('walk', 'walk', 'interest'),
+  ('chess','chess',  'interest'),
+  ('gardening','gardening', 'interest'),
+  ('cat lover', 'cat lover','interest'),
+  ('smoking','smoking',  'interest'),
+  ('climbing', 'climbing', 'interest'),
+  ('JavaScript','javaScript',  'skills'),
+  ('Node.js', 'node.js', 'skills'),
+  ('CSS', 'css', 'skills'),
+  ('React.js', 'react.js', 'skills'),
+  ('HTML', 'html', 'skills'),
+  ('PostgresSQL', 'postgressql', 'skills'),
+  ('SQL', 'sql','skills') ;
 
 
 INSERT INTO user2attribute
@@ -56,5 +67,18 @@ INSERT INTO user2attribute
   (3,6),
   (3,3),
   (3,9),
-  (3,25) ;
-
+  (3,25),
+  (4,25),
+  (4,1),
+  (4,4),
+  (4,3),
+  (4,22),
+  (5,1),
+  (5,4),
+  (5,7),
+  (5,19),
+  (5,22),
+  (6,6),
+  (6,3),
+  (6,9),
+  (6,25) ;
