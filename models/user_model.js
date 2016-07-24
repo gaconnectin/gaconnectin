@@ -2,6 +2,17 @@ const _db = require('../db/db');
 const bcrypt = require('bcrypt');
 const salt = bcrypt.genSalt(10);
 
+/* From Jason's react_to-do example */
+const createSecure = (password)=>
+  new Promise( (resolve,reject)=>
+    bcrypt.genSalt( (err, salt)=>
+      bcrypt.hash(password, salt, (err, hash)=>
+        err? reject(err) : resolve(hash)
+      )
+    )
+  );
+
+
 function getAllUsers(req,res,next) {
   _db.any('SELECT * from users')
   .then( data => {
@@ -14,13 +25,14 @@ function getAllUsers(req,res,next) {
 
 }
 
-function createSecure(username, password, display_name, slack, callback) {
-  bcrypt.genSalt(function(err, salt) {
-    bcrypt.hash(password, salt, function(err, hash) {
-      callback(username, hash, display_name, slack);
-    })
-  })
-}
+
+// function createSecure(username, password, display_name, slack, callback) {
+//   bcrypt.genSalt(function(err, salt) {
+//     bcrypt.hash(password, salt, function(err, hash) {
+//       callback(username, hash, display_name, slack);
+//     })
+//   })
+// }
 
 
 function checkInvitationToken(req, res, next) {
@@ -39,23 +51,50 @@ function checkInvitationToken(req, res, next) {
 
 }
 
+ // createUser(req, res, next) {
+
+ //    createSecure(req.body.password)
+ //      .then( hash=>{
+ //        _db.one(`
+ //          INSERT INTO users (email, password_digest)
+ //          VALUES ($1, $2)
+ //          returning *;`,[req.body.email, hash]
+ //        )
+ //        .then( newUser=> {
+ //          console.log(newUser)
+ //          res.user = newUser;
+ //          next()
+ //        })
+ //        .catch( err=> {
+ //          console.log('error signing up', err)
+ //          next()
+ //        })
+
+ //      });
+
+ //  },
+
+
 function createUser(req, res, next) {
   console.log("In create user. has valid token = ", res.has_valid_token)
   if (res.has_valid_token) {
-    createSecure( req.body.username, req.body.password, req.body.display_name, req.body.slack, saveUser)
-    function saveUser(username, hash, display_name, slack) {
+    console.log('has valid token');
+    createSecure(req.body.password)
+      .then( hash=>{
 
-      _db.any(`INSERT INTO users (username, password_digest, display_name, slack)
-             VALUES($1,$2,$3,$4)`,[username, hash, display_name, slack])
-           .then(data => {
-            console.log(data);
-            next();
-           })
-           .catch( error => {
-            console.log('Error ', error);
-            next();
-           })
-    }
+          console.log(`About to create new user with username = ${req.body.username}, password_digest = ${hash}`);
+        _db.one(`INSERT INTO users (username, password_digest, display_name, slack, image_url)
+               VALUES($1,$2,$3,$4,$5) returning *;`,[req.body.username, hash, req.body.display_name, req.body.slack, req.body.image_url])
+             .then(data => {
+              console.log(data);
+              res.user = data;
+              next();
+             })
+             .catch( error => {
+              console.log('Error signing up', error);
+              next();
+             })
+    });
   } else {
     res.error = "No Valid Invitation Token given";
     next();
@@ -123,7 +162,36 @@ where users.user_id=$1`,[req.params.uID])
 
 }
 
-function getUser(req,res,next) {
+/* From Jason's react_to-do example */
+/* GET user */
+function getUserByUsername(req, res, next) {
+  /* trim and lowercase the username before we try to match it */
+  _db.one(`
+    SELECT *
+    FROM users
+    WHERE username = lower(trim(from $/username/));
+    `, req.body)
+    .then( user=>{
+
+      if(bcrypt.compareSync(req.body.password, user.password_digest)){
+        res.user = user;
+      }else{
+        res.error = true
+      }
+      console.log(res.user)
+      next();
+
+    })
+    /* NOTE: NO USERS or all ERRORS*/
+    .catch( error=>{
+      console.error('Error ', error);
+      res.error = error
+      next()
+    })
+}
+
+
+function getUserByID(req,res,next) {
   _db.one(`SELECT *
           FROM users
           WHERE user_id=$1`,[req.params.uID])
@@ -202,6 +270,9 @@ function deleteUserAttribute(req,res,next) {
         });
   }
 }
-module.exports = { getUserAttributes, getAllUsers, getUser, createUser, checkInvitationToken,
+module.exports = { getUserAttributes, getAllUsers, getUserByID, getUserByUsername, 
+                   createUser, checkInvitationToken,
                    updateUser, deleteUser, addUserAttribute, findUserAttributeId,
                    deleteUserAttribute};
+
+

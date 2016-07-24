@@ -28,6 +28,7 @@ module.exports={
   },
 
   validateToken(req,res,next){
+    console.log("IN validateToken!!!");
     const token = getTokenFromHeader(req)
 
     // no token, die here
