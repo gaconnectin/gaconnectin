@@ -4,6 +4,15 @@ import ajaxAdaptor          from '../helpers/ajaxAdaptor.js';
 
 const ajax = new ajaxAdaptor(fetch);
 
+export default class Footer extends React.Component{
+  render(){
+    return (
+      <h1>{this.props.children}</h1>
+      )
+
+  }
+
+}
 
 export default class ProfileList extends React.Component {
 
@@ -18,16 +27,15 @@ export default class ProfileList extends React.Component {
         username: [],
         interestName:[],
         skillName:[],
-        userID: 0
+        user_id: 0
 
       }
     }
   }//end constructor
 
   componentDidMount(event) {
-    let userID = this.state.userData.userID
-    let string = []
-    ajax.getHeidiUser(userID)
+
+    ajax.getHeidiUser(5)
         .then(data=> {
           console.log(data)
             this.setState({displayName:data.user.display_name});
@@ -35,13 +43,16 @@ export default class ProfileList extends React.Component {
             this.setState({slack:data.user.slack})
             this.setState({skillName:data.attributes[3].attr_name})
             this.setState({interestName:data.attributes[0].attr_name})
-            this.setState({userID: data.user.user_id})
+            this.setState({user_id: data.user.user_id})
+
         })
     } //end of componentDidMount()
 
 
   render(){
-    console.log("Props", this.props)
+
+    const userProfileId = this.props.params.userId;
+    console.log(userProfileId, "in render")
     return (
         <div className="container">
           <hr/>
@@ -77,10 +88,11 @@ export default class ProfileList extends React.Component {
                             <button className="btn btn-default goTOEditUSerProf"> EDIT PROFILE</button>
                         </div>
                       </div>
+
                     </form>
-
-
               </div>
+              <pre>{JSON.stringify(this.state, null, 2)}</pre>
+              <Footer />
           </div>
         </div>
     )

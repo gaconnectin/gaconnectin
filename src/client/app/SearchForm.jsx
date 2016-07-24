@@ -104,40 +104,42 @@ getUsersChoice(event){
     )
   }//end getStudentWithInterest
 
-
 render(){
 
     return (
 
         <div className="row text-center">
+          <div>
           <hr />
             <h1>Welcome to Ga Connectin!</h1>
             <h3>Start your search now!</h3>
-            <section className="home-block">
-                <form className="form-inline" onClick={this.getUsersChoice.bind(this)}>
-                    <div className="form-group home-page">
-                      <select className="form-control" name="choice" defaultValue="choose" id="choice">
-                        <option value="choose" disabled>Please Select An Option</option>
-                        <option name="skills" value="skills">Skill</option>
-                        <option name="choice" value="interests">Interest</option>
-                      </select>
-                      <button className="btn btn-success">Search</button>
-                    </div>
-                </form>
-            </section>
-            <hr />
+              <section className="home-block">
+                  <form className="form-inline" onClick={this.getUsersChoice.bind(this)}>
+                      <div className="form-group home-page">
+                        <select className="form-control" name="choice" defaultValue="choose" id="choice">
+                          <option value="choose" disabled>Please Select An Option</option>
+                          <option name="skills" value="skills">Skill</option>
+                          <option name="choice" value="interests">Interest</option>
+                        </select>
+                        <button className="btn btn-success">Search</button>
+                      </div>
+                  </form>
+              </section>
+              <hr />
+            </div>
+            <div>
               <SearchOption
               userSkill={this.state.skills}
               userInterest={this.state.interests}
               userChoice={this.state.userChoice}
               getStudentWithInterest={this.getStudentWithInterest.bind(this)}
-              getStudentWithSkill={this.getStudentWithSkill.bind(this)}
-              />
-               <div>
-         <DisplayResult showAllStudents={this.state.studentList} />
+              getStudentWithSkill={this.getStudentWithSkill.bind(this)}/>
+            </div>
+            <div>
+                <DisplayResult showAllStudents={this.state.studentList}/>
+          </div>
+          <pre>{JSON.stringify(this.state, null, 2)}</pre>
         </div>
-        </div>
-
       )
    }
 }

@@ -16,6 +16,7 @@ import MainProfile      from './MainProfile.jsx';
 import ProfileTesting   from './ProfileTesting.jsx';
 import ProfileList      from './ProfileList.jsx';
 import NotFound         from './NotFound.jsx';
+import SearchOption     from './SearchOption.jsx';
 
 
 
@@ -40,7 +41,8 @@ ReactDOM.render((
     <Route path="/" component={App}>
       {/* add the routes here */}
       <IndexRoute component={SearchForm}/>
-      <Route path='heiditest/user/:userId' component={ProfileList}/>
+      <Route component={SearchOption} />
+       <Route path='heiditest/user/:userId' component={ProfileList}/>
       <Route path='heiditest' component={ProfileTesting}/>
       <Route path='login' component={LoginUser}/>
       <Route path='create-account' component={CreateUser} />
