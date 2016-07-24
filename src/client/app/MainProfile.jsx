@@ -1,8 +1,7 @@
-import React       from 'react';
-import ProfileList from './ProfileList.jsx';
-import SkillList   from './SkillList.jsx';
-
-import ajaxAdaptor          from '../helpers/ajaxAdaptor.js';
+import React          from 'react';
+import ProfileList    from './ProfileList.jsx';
+import SkillList      from './SkillList.jsx';
+import ajaxAdaptor    from '../helpers/ajaxAdaptor.js';
 
 const ajax = new ajaxAdaptor(fetch);
 
@@ -20,25 +19,41 @@ export default class  MainProfile extends React.Component {
         username: [],
         interestName:[],
         skillName:[],
-
       }
     }
   }//end constructor
 
   componentDidMount(event) {
-    let string = []
+    let string = [];
+    let skills= [];
+    let interests= [];
     ajax.getUserAttributes()
         .then(data=> {
           let newUserData = []
 
           console.log(data)
-          console.log(data.attributes[0].attr_type)
             this.setState({displayName:data.user.display_name});
             this.setState({username:data.user.username});
             this.setState({slack:data.user.slack})
+            console.log(data.attributes.attr_type)
 
-              this.setState({skillName:data.attributes[3].attr_name})
-              this.setState({interestName:data.attributes[0].attr_name})
+              let skills= [];
+              let interests= [];
+            for (var i = 0; i < data.attributes[i].length; i++) {
+              if (data.attributes.attr_type[i] === "skills") {
+                skills.push(data.attributes[i].attr_name)
+              }
+              if (data.attributes.attr_type[i] === "interest") {
+                interests.push(data.attributes[i].attr_name)
+                console.log(data.attributes.attr_type)
+              }
+
+                console.log(skills)
+            }
+                this.setState({skillName:this.state.skills})
+                this.setState({interestName:this.state.interests})
+              // this.setState({skillName:data.attributes[3].attr_name})
+              // this.setState({interestName:data.attributes[0].attr_name})
         })
     } //end of componentDidMount()
 
@@ -63,11 +78,19 @@ export default class  MainProfile extends React.Component {
                         <h3>Skills</h3>
                           <ul className="skillsPrint">
                               <li>{this.state.skillName}</li>
+                              {/*{this.state.skillName.map(function(sklApnd) {
+                                return sklApnd
+                              })
+                              } */}
                           </ul>
-                          {/*<br/>*/}
+
                           <h3>Interests</h3>
                           <ul className="interestsPrint">
                               <li>{this.state.interestName} </li>
+                               {/*{this.state.skillName.map(function(intrstApnd) {
+                                return intrstApnd
+                              })
+                              } */}
                           </ul>
                         <label htmlFor="slack-user-name" className="col-sm-2 control-label">Slack: {this.state.slack}</label>
                       </div>
@@ -81,8 +104,6 @@ export default class  MainProfile extends React.Component {
                         </div>
                       </div>
                     </form>
-
-
               </div>
           </div>
         </div>

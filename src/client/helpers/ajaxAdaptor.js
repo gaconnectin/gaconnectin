@@ -21,11 +21,6 @@ export default class AjaxAdaptor {
     .then(r=> r.json())
     console.log(r)
   }
-  getUser() {
-    return fetch('user/2')
-    .then(r=> r.json())
-    console.log(r)
-  }
 
   getStudents(attrType, attrName) {
     console.log('hit the gitStudent in ajaxAdaptor')

@@ -2,7 +2,7 @@ import React from 'react';
 import SearchOption from './SearchOption.jsx'
 import DisplayResult from './DisplayResult.jsx'
 
-import ajaxAdaptor          from '../helpers/ajaxAdaptor.js';
+import ajaxAdaptor  from '../helpers/ajaxAdaptor.js';
 
 const ajax = new ajaxAdaptor(fetch);
 
@@ -16,6 +16,7 @@ constructor() {
 
     this.state = {
       skills: ["one", "two", "three"],
+      interests: ["one", "two", "three"],
       userChoice: "One",
       studentList: []
     } //end state
@@ -24,14 +25,25 @@ constructor() {
 componentDidMount(){
   //hit the db for the freshest list of skills
     ajax.getSkills().then( data=> {
-      let newData = [];
+      let freshSkills = [];
       for(let i = 0; i < data.length; i++){
-        newData.push(data[i]['attr_name'])
-        this.state.skills = newData;
+        freshSkills.push(data[i]['attr_name'])
+        this.state.skills = freshSkills;
       }
+
       this.setState({skills: this.state.skills});
      }
    )
+
+  ajax.getInterests().then( data=> {
+      let freshInterests = [];
+      for(let i = 0; i < data.length; i++){
+        freshInterests.push(data[i]['attr_name'])
+        this.state.interests = freshInterests;
+      }
+      this.setState({interests: this.state.interests})
+  })
+
   }//end componentDidMount
 
 getUsersChoice(event){
@@ -72,19 +84,21 @@ getUsersChoice(event){
 
 
   getStudentWithInterest(event){
+    let self = this
     //return students with same interests using input box
     event.preventDefault()
 
-    //this gets the value of the input is typed
-    let studentInterest = event.target.value;
-    console.log(studentInterest);
+    //return student with desired interest
+    let selected = document.getElementById( "interest" );
+    let studentInterest = (selected.options[ selected.selectedIndex ].value);
     let interest = "interest"
     let allStudents = []
+
     //currently this is just returning all Interests, it is not based on the input value
     ajax.getStudents(interest, studentInterest).then( students=> {
       console.log('promise returned in getStudentInterest ajax call')
       console.log(students)
-      this.state.studentList = student
+      this.state.studentList = students
       this.setState({studentList: this.state.studentList})
       }
     )
@@ -96,32 +110,37 @@ render(){
     return (
 
         <div className="row text-center">
+          <div>
           <hr />
-            <h2>WELCOME to Ga ConnectIN! PLease search</h2>
-          <form onClick={this.getUsersChoice.bind(this)}>
-              <div>
-                <select name="choice" defaultValue="choose" id="choice">
-                  <option value="choose" disabled>Choose</option>
-                  <option name="skills" value="skills">Skill</option>
-                  <option name="choice" value="interests">Interest</option>
-                </select>
-              </div>
-              <div>
-                <button className="btn btn-success">Search</button>
-              </div>
-          </form>
-            <hr />
+            <h1>Welcome to Ga Connectin!</h1>
+            <h3>Start your search now!</h3>
+              <section className="home-block">
+                  <form className="form-inline" onClick={this.getUsersChoice.bind(this)}>
+                      <div className="form-group home-page">
+                        <select className="form-control" name="choice" defaultValue="choose" id="choice">
+                          <option value="choose" disabled>Please Select An Option</option>
+                          <option name="skills" value="skills">Skill</option>
+                          <option name="choice" value="interests">Interest</option>
+                        </select>
+                        <button className="btn btn-success">Search</button>
+                      </div>
+                  </form>
+              </section>
+              <hr />
+            </div>
+            <div>
               <SearchOption
               userSkill={this.state.skills}
+              userInterest={this.state.interests}
               userChoice={this.state.userChoice}
               getStudentWithInterest={this.getStudentWithInterest.bind(this)}
-              getStudentWithSkill={this.getStudentWithSkill.bind(this)}
-              />
-               <div>
-         <DisplayResult showAllStudents={this.state.studentList} />
+              getStudentWithSkill={this.getStudentWithSkill.bind(this)}/>
+            </div>
+            <div>
+                <DisplayResult showAllStudents={this.state.studentList} />
+          </div>
+          <pre>{JSON.stringify(this.state, null, 2)}</pre>
         </div>
-        </div>
-
       )
    }
 }
