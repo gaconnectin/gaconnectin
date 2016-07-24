@@ -22,7 +22,7 @@ export default class  MainProfile extends React.Component {
         .then(data=> {
           let newSkills= [];
           let newInterests= [];
-          console.log(data)
+
             this.setState({displayName:data.user.display_name});
             this.setState({username:data.user.username});
             this.setState({slack:data.user.slack})
