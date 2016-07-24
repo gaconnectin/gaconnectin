@@ -18,6 +18,7 @@ GA Connect-In is a app for WDI purple rain students to connect with each other f
 * As a user that is logged in I can view the full profiles for the results returned from my search so that I can contact another student or learn more about what they choose to share in their profile.
 * As a user that is logged in I can update my profile’s contact information, interests, and skills so that the search results return data that I want expressed about me.
 
+
 ---
 
 # Media
@@ -51,7 +52,7 @@ GA Connect-In is a app for WDI purple rain students to connect with each other f
 
 # Special Thanks
 This project would not have been possible without the contributions of the following people and technologies:
-* Github, Node.js, Express, pg-promise, Bootstrap, PSQL, React, 
+* Github, Node.js, Express, pg-promise, Bootstrap, PSQL, React, React Router, 
 
 ---
 

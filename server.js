@@ -7,26 +7,35 @@ const dotenv      = (DEV) ? require('dotenv').config() : undefined;
 const express     = require('express');
 const logger      = require('morgan');
 const path        = require('path');
+const bodyParser  = require('body-parser');
 const userRoute   = require('./routes/user_rt');
 const searchRoute = require('./routes/search_rt');
 const app         = express();
 const PORT        = process.argv[2] || process.env.port || 3000;
 
 
-app.use( logger('dev') );
+app.use(require('compression')())
 
-app.use( express.static(path.join(__dirname, 'dist')));
+app.use( logger( DEV ? 'dev' : 'common') );
+
+app.use(bodyParser.json());
 
 //ROUTES
+
 
 app.use('/search', searchRoute);
 
 app.use('/user', userRoute);
 
-app.get('/', (req, res)=>{
-  res.send("Hello you're home")
-});
+app.use( express.static(path.join(__dirname, 'dist')));
 
+
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'))
+})
 
 
 app.listen(PORT , () => console.log(`server magic on`, PORT ) );
+
+
+
