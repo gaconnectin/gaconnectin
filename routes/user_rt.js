@@ -34,8 +34,6 @@ userRouter.post('/', checkInvitationToken, createUser, (req, res)=> {
 
   })
 
-// userRouter.use( tokenService.validateToken )
-
 userRouter.get('/', getAllUsers, sendJSONresp)
 
 userRouter.route('/:uID/add-attr')

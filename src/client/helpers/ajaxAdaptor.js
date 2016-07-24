@@ -15,7 +15,7 @@ export default class AjaxAdaptor {
     return fetch('/search/interests')
     .then(r => r.json())
   }
-  // Getting user attributes by ":uID"
+
   getUserAttributes(id) {
     let setId = location.pathname.split('/')
     setId = parseInt(setId[setId.length -1])
@@ -31,6 +31,7 @@ export default class AjaxAdaptor {
     .catch(error=>{
       throw error
     })
+
 
   }
 
