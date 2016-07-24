@@ -17,9 +17,9 @@ CREATE TABLE users (
 CREATE TABLE attributes (
   attribute_id SERIAL PRIMARY KEY NOT NULL,
   attr_name VARCHAR(64) NOT NULL,
-  attr_name_lower VARCHAR(64) NOT NULL,
+  attr_name_lower VARCHAR(64),
   attr_type VARCHAR(12) NOT NULL,
-  CONSTRAINT u_constraint UNIQUE (attr_name_lower, attr_type)
+  CONSTRAINT u_constraint UNIQUE (attr_name, attr_type)
 );
 
 CREATE TABLE user2attribute (

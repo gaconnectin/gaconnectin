@@ -113,7 +113,8 @@ function updateUser(req,res,next) {
   let vals = [];
   let currI = 0;
   let currVal;
-
+    console.log(req.body, "this is the req body")
+    console.log(req.query, "this is the req query")
   for (let i=0; i<items.length; i++) {
     currVal = items[i].val;
     console.log('currVal = ', currVal);
@@ -270,7 +271,7 @@ function deleteUserAttribute(req,res,next) {
         });
   }
 }
-module.exports = { getUserAttributes, getAllUsers, getUserByID, getUserByUsername, 
+module.exports = { getUserAttributes, getAllUsers, getUserByID, getUserByUsername,
                    createUser, checkInvitationToken,
                    updateUser, deleteUser, addUserAttribute, findUserAttributeId,
                    deleteUserAttribute};

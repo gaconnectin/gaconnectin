@@ -26,33 +26,46 @@ export default class  MainProfile extends React.Component {
             this.setState({displayName:data.user.display_name});
             this.setState({username:data.user.username});
             this.setState({slack:data.user.slack})
-            console.log(data)
+
           for (var i = 0; i < data.attributes.length; i++) {
               if (data.attributes[i].attr_type === "skills") {
                 newSkills.push(data.attributes[i].attr_name)
-                console.log(data.attributes[i].attr_name, "Inside if conditional == skills")
               }
               else if (data.attributes[i].attr_type === "interest") {
                 newInterests.push(data.attributes[i].attr_name)
-                console.log(data.attributes[i].attr_name, "Inside if conditional == interest")
               }
           }
                 this.state.skillName = newSkills
                 this.setState({skillName:this.state.skillName})
-                console.log(newSkills, "new skills outside loop")
-                console.log(newInterests, "new interest outside loop")
+
                 this.state.interestName = newInterests
                 this.setState({interestName:this.state.interestName})
-                console.log(this.state.skillName, "this is skillName array")
-                console.log(this.state.interestName, "this is interestName array")
+
         })
     } //end of componentDidMount()
         toggleEdit(event){
-            event.preventDefault
-            console.log("toggleEdit btn CLICKED !!");
-            this.state.editProfile = !this.state.editProfile
-            this.setState({editProfile:this.state.editProfile})
+          event.preventDefault
+          console.log("toggleEdit btn CLICKED !!");
+          this.state.editProfile = !this.state.editProfile
+          this.setState({editProfile:this.state.editProfile})
         }
+
+    updateUserName(event){
+      event.preventDefault()
+      console.log(event.target.name.value)
+      ajax.updateUser({ display_name: event.target.name.value})
+        .then(data=> {})
+      }
+
+    updateUserSlack(event){
+      event.preventDefault()
+      console.log(event.target.slack.value)
+      ajax.updateUser({slack:event.target.name.value})
+        .then(data=> {})
+    }
+
+
+
   render(){
     if (this.state.editProfile === false) {
     return (
@@ -98,7 +111,11 @@ export default class  MainProfile extends React.Component {
     )
        } else {
          return (
-            <Profile toggleProfile={this.toggleEdit.bind(this)} />
+            <Profile
+              toggleProfile={this.toggleEdit.bind(this)}
+              updateUserSlack={this.updateUserSlack.bind(this)}
+              updateUserName={this.updateUserName.bind(this)} />
+
           )
        }
   } //end of render()

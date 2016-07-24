@@ -22,6 +22,22 @@ export default class AjaxAdaptor {
     return fetch(`/user/${setId}`)
     .then(r=> r.json())
   }
+  updateUser(userInfo) {
+    let setId = location.pathname.split('/')
+    console.log(userInfo)
+    setId = parseInt(setId[setId.length -1])
+    return fetch(`/user/${setId}`, {
+      method:'POST',
+      headers: {
+        "Content-type":
+              "application/json; charset=UTF-8"
+      },
+      body: JSON.stringify(userInfo)
+    })
+    // .then(r=> r.json())
+  }
+
+
 
 
   getStudents(attrType, attrName) {

@@ -47,7 +47,7 @@ userRouter.route('/:uID')
     return res.json({user: res.user,
             attributes: res.attributes});
   })
-  .put(updateUser, sendJSONresp)
+  .post(updateUser, sendJSONresp)
   .delete(deleteUser, sendJSONresp)
 
 module.exports = userRouter;
