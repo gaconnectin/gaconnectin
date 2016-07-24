@@ -11,7 +11,7 @@ const bodyParser  = require('body-parser');
 const userRoute   = require('./routes/user_rt');
 const searchRoute = require('./routes/search_rt');
 const app         = express();
-const PORT        = process.argv[2] || process.env.port || 3000;
+const PORT        = process.env.PORT || 3000;
 
 
 app.use(require('compression')())

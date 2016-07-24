@@ -7,7 +7,7 @@ const { getUserAttributes,
         checkInvitationToken,
         updateUser,
         deleteUser,
-        addUserAttribute ,
+        addUserAttribute,
         findUserAttributeId,
         deleteUserAttribute } = require('../models/user_model');
 
