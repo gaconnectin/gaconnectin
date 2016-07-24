@@ -2,7 +2,7 @@ import React from 'react';
 import SearchOption from './SearchOption.jsx'
 import DisplayResult from './DisplayResult.jsx'
 
-import ajaxAdaptor          from '../helpers/ajaxAdaptor.js';
+import ajaxAdaptor  from '../helpers/ajaxAdaptor.js';
 
 const ajax = new ajaxAdaptor(fetch);
 
@@ -16,6 +16,7 @@ constructor() {
 
     this.state = {
       skills: ["one", "two", "three"],
+      interests: ["one", "two", "three"]
       userChoice: "One",
       studentList: []
     } //end state
@@ -97,25 +98,27 @@ render(){
 
         <div className="row text-center">
           <hr />
-            <h2>WELCOME to Ga ConnectIN! PLease search</h2>
-          <form onClick={this.getUsersChoice.bind(this)}>
-              <div>
-                <select name="choice" defaultValue="choose" id="choice">
-                  <option value="choose" disabled>Choose</option>
-                  <option name="skills" value="skills">Skill</option>
-                  <option name="choice" value="interests">Interest</option>
-                </select>
-              </div>
-              <div>
-                <button className="btn btn-success">Search</button>
-              </div>
-          </form>
+            <h1>Welcome to Ga Connectin!</h1>
+            <h3>Start your search now!</h3>
+            <section className="home-block">
+                <form className="form-inline" onClick={this.getUsersChoice.bind(this)}>
+                    <div className="form-group home-page">
+                      <select className="form-control" name="choice" defaultValue="choose" id="choice">
+                        <option value="choose" disabled>Please Select An Option</option>
+                        <option name="skills" value="skills">Skill</option>
+                        <option name="choice" value="interests">Interest</option>
+                      </select>
+                      <button className="btn btn-success">Search</button>
+                    </div>
+                </form>
+            </section>
             <hr />
               <SearchOption
               userSkill={this.state.skills}
               userChoice={this.state.userChoice}
               getStudentWithInterest={this.getStudentWithInterest.bind(this)}
               getStudentWithSkill={this.getStudentWithSkill.bind(this)}
+              listToSearch={this.state.}
               />
                <div>
          <DisplayResult showAllStudents={this.state.studentList} />

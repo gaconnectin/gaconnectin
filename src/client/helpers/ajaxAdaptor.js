@@ -27,6 +27,14 @@ export default class AjaxAdaptor {
     console.log(r)
   }
 
+  getHeidiUser(id) {
+    console.log('hit Heidi Route')
+   return fetch(`/user/${id}`)
+    .then(r=> r.json())
+  }
+
+
+
   getStudents(attrType, attrName) {
     console.log('hit the gitStudent in ajaxAdaptor')
     return fetch(`/search/users-attributes?attr_type=${attrType}&attr_name=${attrName}`)
@@ -34,6 +42,7 @@ export default class AjaxAdaptor {
     .catch(error=>{
       throw error
     })
+
 
   }
 

@@ -1,4 +1,7 @@
 import React from 'react';
+var ReactDatalist = require('react-datalist')
+
+
 
 
 export default function SearchOption(props){
@@ -9,15 +12,16 @@ export default function SearchOption(props){
           <div className="row text-center">
             <div>
               <h2>I want to find someone who can help me with:</h2>
-              <form>
-                 <select id="skill">
+              <form className="form-inline">
+                 <div className="form-group">
+                 <select className="form-control" id="skill">
                   {/*Return results from the db, population the options*/}
                     {props.userSkill.map(function(item, index){
                       return <option key={index}>{item}</option>
                     })}
-
                  </select>
-                <button onClick={props.getStudentWithSkill} className="btn btn-default" type="submit">FIND!</button>
+                <button onClick={props.getStudentWithSkill} className="btn btn-success" type="submit">FIND!</button>
+                </div>
               </form>
             </div>
             <hr />
@@ -31,8 +35,9 @@ export default function SearchOption(props){
                 <div>
                   <h2>I want to find someone who likes:</h2>
                   <form>
+                  <ReactDatalist list={this.props.list} options={options} />
                      {/*Return options from the database for onchange type events*/}
-                    <input onChange={props.getStudentWithInterest} name="interest" type="text" placeholder="enter an interest here"/>
+                    {/*<input onChange={props.getStudentWithInterest} name="interest" type="text" placeholder="enter an interest here"/>*/}
                     <button className="btn btn-default" type="submit">FIND!</button>
                   </form>
                 </div>

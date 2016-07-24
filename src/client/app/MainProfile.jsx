@@ -7,7 +7,7 @@ import ajaxAdaptor          from '../helpers/ajaxAdaptor.js';
 const ajax = new ajaxAdaptor(fetch);
 
 
-export default class  MainProfile extends React.Component {
+export default class MainProfile extends React.Component {
 
   constructor() {
 
