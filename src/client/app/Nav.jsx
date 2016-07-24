@@ -1,15 +1,53 @@
 import React from 'react';
-//<img className="logo" src="../fonts/reel.svg"/>
+import { Link } from 'react-router';
+require('../fonts/logo.svg');
 
- const Nav = props=>(
-   <nav className="navbar navbar-default navbar-fixed-top">
-     <div className="container">
-       <div className="navbar-header">
-         <a href="#" className="navbar-left">Logo</a>
-         <a href="../" className="navbar-brand">gaConnectIn<span className="logo"></span></a>
-         <a href="../" className="">Login<span className="logo"></span></a>
+
+export default function Nav (props){
+
+ if(props.userStatus === true){
+
+  return (
+
+    <nav className="navbar navbar-default navbar-fixed-top">
+         <div className="container">
+           <div className="navbar-header">
+             <ul className="nav navbar-nav">
+            <li><Link to="/" className="nospace"><span className="logo"></span></Link></li>
+          </ul>
+            </div>
+             <ul className="nav navbar-nav navbar-right">
+               <li><Link to="/logout" activeStyle={{ color: 'red' }}>Log Out</Link></li>
+               <li><Link to="/user-profile" activeStyle={{ color: 'red' }}>Profile</Link></li>
+             </ul>
+         </div>
+
+       </nav>
+
+    )
+
+
+ } else {
+
+  return (
+
+     <nav className="navbar navbar-default navbar-fixed-top">
+       <div className="container">
+         <div className="navbar-header">
+          <ul className="nav navbar-nav">
+            <li><Link to="/" className="nospace"><span className="logo"></span></Link></li>
+          </ul>
+          </div>
+           <ul className="nav navbar-nav navbar-right">
+              <li><Link to="/login" activeStyle={{ color: 'red' }}>Login</Link></li>
+              <li><Link to="/create-account" activeStyle={{ color: 'red' }}>Create Account</Link></li>
+           </ul>
        </div>
-     </div>
-   </nav>
- )
- export default Nav;
+
+     </nav>
+    )
+
+}
+
+}
+
