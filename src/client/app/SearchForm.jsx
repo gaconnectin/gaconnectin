@@ -97,7 +97,7 @@ render(){
 
         <div className="row text-center">
           <hr />
-            <h2>WELCOME to Ga ConnectIN! PLease search</h2>
+            <h2>WELCOME to Ga ConnectIN! PLease searc</h2>
           <form onClick={this.getUsersChoice.bind(this)}>
               <div>
                 <select name="choice" defaultValue="choose" id="choice">
