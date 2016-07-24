@@ -1,4 +1,7 @@
-import React from 'react';
+import React          from 'react';
+import ajaxAdaptor    from '../helpers/ajaxAdaptor.js';
+
+const ajax = new ajaxAdaptor(fetch);
 
 export default function CreateUser(props) {
 
@@ -8,10 +11,14 @@ export default function CreateUser(props) {
     const newUser = {
       display_name: event.target.elements.display_name.value,
       username: event.target.elements.username.value,
-      password_digest: event.target.elements.password_digest.value,
+      password_digest: event.target.elements.password.value,
       slack: event.target.elements.slack.value,
       invitation_token: event.target.elements.invitation_token.value
     }
+
+
+    ajax.createUser(newUser)
+        .then(data=> {})
 
     console.log(newUser);
     // fired the App's prop function
@@ -23,6 +30,7 @@ export default function CreateUser(props) {
 
     event.target.reset();
   }
+
 
 return (
 
@@ -39,7 +47,7 @@ return (
           </div>
           <div className="form-group">
             <label type="text" >Password</label>
-            <input className="form-control" type="password" name="password_digest" placeholder="Create a password" required/>
+            <input className="form-control" type="password" name="password" placeholder="Create a password" required/>
           </div>
           <div className="form-group">
             <label type="text" >Slack Id</label>

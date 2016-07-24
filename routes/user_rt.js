@@ -26,6 +26,7 @@ userRouter.post('/authenticate',
 
 userRouter.post('/', checkInvitationToken, createUser, (req, res)=> {
     if (res.error) {
+      console.log("got error! ", res.error)
 //      res.send("Got error: ", res.error);
       res.status(400).send(res.error);
     } else {

@@ -81,12 +81,10 @@ function createUser(req, res, next) {
     console.log('has valid token');
     createSecure(req.body.password)
       .then( hash=>{
-
-          console.log(`About to create new user with username = ${req.body.username}, password_digest = ${hash}`);
-        _db.one(`INSERT INTO users (username, password_digest, display_name, slack, image_url)
-               VALUES($1,$2,$3,$4,$5) returning *;`,[req.body.username, hash, req.body.display_name, req.body.slack, req.body.image_url])
+        _db.one(`INSERT INTO users (username, password_digest, display_name, slack)
+               VALUES($1,$2,$3,$4) returning *;`,[req.body.username, hash, req.body.display_name, req.body.slack])
              .then(data => {
-              console.log(data);
+              console.log("success!. data = ", data);
               res.user = data;
               next();
              })
