@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "GA Student Connect App",
   "main": "server.js",
+  "engines": {
+    "node": "6.2.1"
+  },
   "private": true,
   "scripts": {
     "clean": "rm -rf dist && rm -rf node_modules",
