@@ -34,7 +34,6 @@ export default class ProfileList extends React.Component {
 
     ajax.getHeidiUser()
         .then(data=> {
-          console.log(data)
             this.setState({displayName:data.user.display_name});
             this.setState({username:data.user.username});
             this.setState({slack:data.user.slack})
@@ -48,14 +47,12 @@ export default class ProfileList extends React.Component {
 
   updateUserName(event){
     event.preventDefault()
-    console.log(event.target.name.value)
     ajax.getUserAttributes()
         .then(data=> {})
   }
 
   updateUserSlack(event){
     event.preventDefault()
-    console.log(event.target.slack.value)
     ajax.getUserAttributes()
         .then(data=> {})
   }
@@ -64,7 +61,6 @@ export default class ProfileList extends React.Component {
   render(){
 
     const userProfileId = this.props.params.userId;
-    console.log(userProfileId, "in render")
     if(this.state.editProfile===false){
 
       return(
