@@ -3,7 +3,6 @@ var ReactDatalist = require('react-datalist')
 
 
 
-
 export default function SearchOption(props){
 
   if(props.userChoice === 'skills'){
@@ -34,12 +33,17 @@ export default function SearchOption(props){
         <div className="row text-center">
                 <div>
                   <h2>I want to find someone who likes:</h2>
-                  <form>
-                  <ReactDatalist list={this.props.list} options={options} />
-                     {/*Return options from the database for onchange type events*/}
-                    {/*<input onChange={props.getStudentWithInterest} name="interest" type="text" placeholder="enter an interest here"/>*/}
-                    <button className="btn btn-default" type="submit">FIND!</button>
-                  </form>
+                   <form className="form-inline">
+                 <div className="form-group">
+                 <select className="form-control" id="skill">
+                  {/*Return results from the db, population the options*/}
+                    {props.userInterest.map(function(item, index){
+                      return <option key={index}>{item}</option>
+                    })}
+                 </select>
+                <button onClick={props.getStudentWithInterest} className="btn btn-success" type="submit">FIND!</button>
+                </div>
+              </form>
                 </div>
                 <hr />
               </div>
@@ -54,4 +58,3 @@ export default function SearchOption(props){
   }
 
 }
-

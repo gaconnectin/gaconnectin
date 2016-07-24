@@ -16,7 +16,7 @@ constructor() {
 
     this.state = {
       skills: ["one", "two", "three"],
-      interests: ["one", "two", "three"]
+      interests: ["one", "two", "three"],
       userChoice: "One",
       studentList: []
     } //end state
@@ -25,14 +25,25 @@ constructor() {
 componentDidMount(){
   //hit the db for the freshest list of skills
     ajax.getSkills().then( data=> {
-      let newData = [];
+      let freshSkills = [];
       for(let i = 0; i < data.length; i++){
-        newData.push(data[i]['attr_name'])
-        this.state.skills = newData;
+        freshSkills.push(data[i]['attr_name'])
+        this.state.skills = freshSkills;
       }
+
       this.setState({skills: this.state.skills});
      }
    )
+
+  ajax.getInterests().then( data=> {
+      let freshInterests = [];
+      for(let i = 0; i < data.length; i++){
+        freshInterests.push(data[i]['attr_name'])
+        this.state.interests = freshInterests;
+      }
+      this.setState({interests: this.state.interests})
+  })
+
   }//end componentDidMount
 
 getUsersChoice(event){
@@ -115,10 +126,10 @@ render(){
             <hr />
               <SearchOption
               userSkill={this.state.skills}
+              userInterest={this.state.interests}
               userChoice={this.state.userChoice}
               getStudentWithInterest={this.getStudentWithInterest.bind(this)}
               getStudentWithSkill={this.getStudentWithSkill.bind(this)}
-              listToSearch={this.state.}
               />
                <div>
          <DisplayResult showAllStudents={this.state.studentList} />
