@@ -53,13 +53,14 @@ export default function Profile(props) {
 
                     <div className="row">
                       <div className="col-sm-6">
-                      <ProfileList />
+                      <SkillList />
                       </div>
                       <div className="col-sm-6">
                       <SkillList />
                       </div>
                     </div>
               </div>
+              <button type="submit" className="btn btn-default">Done!</button>
           </div>
         </div>
     )

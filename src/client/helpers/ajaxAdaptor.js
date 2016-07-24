@@ -29,7 +29,10 @@ export default class AjaxAdaptor {
 
   getHeidiUser(id) {
     console.log('hit Heidi Route')
-   return fetch(`/user/${id}`)
+    let setId =location.pathname.split('/')
+    setId = parseInt(setId[setId.length-1])
+
+   return fetch(`/user/${setId}`)
     .then(r=> r.json())
   }
 

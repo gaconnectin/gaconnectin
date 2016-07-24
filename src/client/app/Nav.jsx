@@ -3,8 +3,6 @@ import { Link } from 'react-router';
 require('../fonts/logo.svg');
 
 
-//<img className="logo" src="../fonts/reel.svg"/>
-
 export default function Nav(props){
 
 
