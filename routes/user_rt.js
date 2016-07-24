@@ -26,6 +26,7 @@ userRouter.post('/authenticate',
 
 userRouter.post('/', checkInvitationToken, createUser, (req, res)=> {
     if (res.error) {
+      console.log("got error! ", res.error)
 //      res.send("Got error: ", res.error);
       res.status(400).send(res.error);
     } else {
@@ -33,8 +34,6 @@ userRouter.post('/', checkInvitationToken, createUser, (req, res)=> {
     }
 
   })
-
-//userRouter.use( tokenService.validateToken )
 
 userRouter.get('/', getAllUsers, sendJSONresp)
 
@@ -49,7 +48,7 @@ userRouter.route('/:uID')
     return res.json({user: res.user,
             attributes: res.attributes});
   })
-  .put(updateUser, sendJSONresp)
+  .post(updateUser, sendJSONresp)
   .delete(deleteUser, sendJSONresp)
 
 module.exports = userRouter;
