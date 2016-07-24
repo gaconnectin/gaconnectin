@@ -104,6 +104,7 @@ getUsersChoice(event){
     )
   }//end getStudentWithInterest
 
+
 render(){
 
     return (
@@ -136,7 +137,7 @@ render(){
               getStudentWithSkill={this.getStudentWithSkill.bind(this)}/>
             </div>
             <div>
-                <DisplayResult showAllStudents={this.state.studentList}/>
+                <DisplayResult showAllStudents={this.state.studentList} />
           </div>
           <pre>{JSON.stringify(this.state, null, 2)}</pre>
         </div>

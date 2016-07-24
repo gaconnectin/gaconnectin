@@ -35,7 +35,7 @@ export default class ProfileList extends React.Component {
 
   componentDidMount(event) {
 
-    ajax.getHeidiUser(5)
+    ajax.getHeidiUser()
         .then(data=> {
           console.log(data)
             this.setState({displayName:data.user.display_name});
@@ -46,6 +46,7 @@ export default class ProfileList extends React.Component {
             this.setState({user_id: data.user.user_id})
 
         })
+
     } //end of componentDidMount()
 
 

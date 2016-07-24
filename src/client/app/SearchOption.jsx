@@ -1,5 +1,4 @@
 import React from 'react';
-var ReactDatalist = require('react-datalist')
 
 
 
