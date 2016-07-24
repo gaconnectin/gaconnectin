@@ -17,23 +17,6 @@ import NotFound         from './NotFound.jsx';
 
 
 
-
-
-export default class Index extends React.Component{
-
- constructor() {
-
-    // we also need to wake up our ancestors
-    super();
-
-    // here's our state
-    this.state = {
-      userLoggedIn: false,
-    }
-  }
-
-}
-
 ReactDOM.render((
   <Router history={browserHistory}>
     <Route path="/" component={App}>

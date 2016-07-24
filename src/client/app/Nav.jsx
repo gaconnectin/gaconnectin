@@ -3,10 +3,9 @@ import { Link } from 'react-router';
 require('../fonts/logo.svg');
 
 
-export default function Nav(props){
+export default function Nav (props){
 
-
- if(props.userLoggedIn){
+ if(props.userStatus === true){
 
   return (
 
@@ -14,7 +13,7 @@ export default function Nav(props){
          <div className="container">
            <div className="navbar-header">
              <ul className="nav navbar-nav">
-            <li><Link to="/" className=""><span className="logo"></span></Link></li>
+            <li><Link to="/" className="nospace"><span className="logo"></span></Link></li>
           </ul>
             </div>
              <ul className="nav navbar-nav navbar-right">
@@ -36,7 +35,7 @@ export default function Nav(props){
        <div className="container">
          <div className="navbar-header">
           <ul className="nav navbar-nav">
-            <li><Link to="/" className=""><span className="logo"></span></Link></li>
+            <li><Link to="/" className="nospace"><span className="logo"></span></Link></li>
           </ul>
           </div>
            <ul className="nav navbar-nav navbar-right">

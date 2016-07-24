@@ -71,43 +71,42 @@ export default class  MainProfile extends React.Component {
     return (
         <div className="container">
           <hr/>
-          <h1 className="text-center">{this.state.displayName}</h1>
-          {/*<h3 userData={this.state.userData}></h3>*/}
-          <h3>User Name: {this.state.username}</h3>
+          <h1 className="text-center header-name">{this.state.displayName}'s Profile</h1>
+          <hr />
             <div className="row">
               <div className="col-sm-3">
                 <img src="https://dizivizi.com/mbb/imgs/site/default_user.png"/>
               </div>
-              <div className="col-sm-9">
-                  <form className="form-inline">
-                    <div className="form-group">
-                      <div className="col-sm-10">
+                    <div className="col-sm-9 text-left">
+                        <h3>User Name: <span className="highlight">{this.state.username}</span></h3>
+                        <h3>Slack Id: <span className="highlight">{this.state.slack}</span></h3>
                         <h3>Skills</h3>
-                          <ul className="skillsPrint">
-                              {this.state.skillName.map(function(skillData, index) {
-                                 return (
-                                        <li key={index}>{skillData}</li>
-                                  )
-                              })
-                              } {/*end of .map function*/}
-                          </ul>
-                          <h3>Interests</h3>
+                              <ul className="skillsPrint">
+                                  {this.state.skillName.map(function(skillData, index) {
+                                     return (
+                                            <li className="highlight" key={index}>{skillData}</li>
+                                      )
+                                  })
+                                  } {/*end of .map function*/}
+                              </ul>
+                        <h3>Interests</h3>
                           <ul className="interestsPrint">
                                {this.state.interestName.map(function(interestData,index) {
                                 return (
-                                        <li key={index}>{interestData}</li>
+                                        <li className="highlight" key={index}>{interestData}</li>
                                   )
                               })
                               } {/*end of .map function*/}
                           </ul>
-                        <label htmlFor="slack-user-name" className="col-sm-2 control-label">Slack: {this.state.slack}</label>
                       </div>
-                     </div>
-                    </form>
-                            <button onClick={this.toggleEdit.bind(this)} className="btn btn-default "> EDIT PROFILE</button>
-              </div>
-          </div>
-        </div>
+                      </div>
+                    <div className="row text-center">
+                      <hr />
+                      <button onClick={this.toggleEdit.bind(this)} className="btn btn-success "> EDIT PROFILE</button>
+                      <hr />
+                    </div>
+         </div>
+  //end container
     )
        } else {
          return (

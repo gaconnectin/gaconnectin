@@ -5,7 +5,8 @@ export default function Profile(props) {
   return (
         <div className="container">
           <hr/>
-          <h1 className="text-center">Edit Profile</h1>
+          <h1 className="text-center highlight">Edit Profile</h1>
+          <hr />
             <div className="row">
               <div className="col-sm-3">
                 <img src="https://dizivizi.com/mbb/imgs/site/default_user.png"/>
@@ -47,8 +48,10 @@ export default function Profile(props) {
                         <button type="submit" className="btn btn-default">Save</button>
                       </form>
               </div>
-              <button type="submit" className="btn btn-default" onClick={props.toggleProfile} >Done!</button>
           </div>
+          <div className="text-center">
+              <button type="submit" className="btn btn-success" onClick={props.toggleProfile} >Done!</button>
+              </div>
         </div>
     )
 
