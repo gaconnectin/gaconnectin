@@ -1,6 +1,6 @@
 import React       from 'react';
 import ProfileList from './ProfileList.jsx';
-import SkillList   from './SkillList.jsx';
+// import SkillList   from './SkillList.jsx';
 
 
 export default function Profile(props) {

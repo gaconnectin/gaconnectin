@@ -1,6 +1,6 @@
 import React          from 'react';
-import ProfileList    from './ProfileList.jsx';
-import SkillList      from './SkillList.jsx';
+// import ProfileList    from './ProfileList.jsx';
+// import SkillList      from './SkillList.jsx';
 import ajaxAdaptor    from '../helpers/ajaxAdaptor.js';
 
 const ajax = new ajaxAdaptor(fetch);
@@ -13,47 +13,48 @@ export default class  MainProfile extends React.Component {
     super();
 
     this.state = {
-      userData: {
         slack: [],
         displayName:[],
         username: [],
         interestName:[],
-        skillName:[],
-      }
+        skillName:[]
     }
   }//end constructor
 
   componentDidMount(event) {
-    let string = [];
-    let skills= [];
-    let interests= [];
+    // let string = [];
     ajax.getUserAttributes()
         .then(data=> {
-          let newUserData = []
+          let newSkills= [];
+          let newInterests= [];
 
           console.log(data)
             this.setState({displayName:data.user.display_name});
             this.setState({username:data.user.username});
             this.setState({slack:data.user.slack})
-            console.log(data.attributes.attr_type)
+            console.log(data)
 
-              let skills= [];
-              let interests= [];
-            for (var i = 0; i < data.attributes[i].length; i++) {
-              if (data.attributes.attr_type[i] === "skills") {
-                skills.push(data.attributes[i].attr_name)
-              }
-              if (data.attributes.attr_type[i] === "interest") {
-                interests.push(data.attributes[i].attr_name)
-                console.log(data.attributes.attr_type)
-              }
+          for (var i = 0; i < data.attributes.length; i++) {
+              if (data.attributes[i].attr_type === "skills") {
+                newSkills.push(data.attributes[i].attr_name)
+                console.log(data.attributes[i].attr_name, "Inside if conditional == skills")
 
-                console.log(skills)
-            }
-                this.setState({skillName:this.state.skills})
-                this.setState({interestName:this.state.interests})
-              // this.setState({skillName:data.attributes[3].attr_name})
-              // this.setState({interestName:data.attributes[0].attr_name})
+              }
+              else if (data.attributes[i].attr_type === "interest") {
+                newInterests.push(data.attributes[i].attr_name)
+                console.log(data.attributes[i].attr_name, "Inside if conditional == interest")
+              }
+          }
+                this.state.skillName = newSkills
+                this.setState({skillName:this.state.skillName})
+                console.log(newSkills, "new skills outside loop")
+                console.log(newInterests, "new interest outside loop")
+
+                this.state.interestName = newInterests
+                this.setState({interestName:this.state.interestName})
+
+                console.log(this.state.skillName, "this is skillName array")
+                console.log(this.state.interestName, "this is interestName array")
         })
     } //end of componentDidMount()
 
@@ -77,20 +78,25 @@ export default class  MainProfile extends React.Component {
                       <div className="col-sm-10">
                         <h3>Skills</h3>
                           <ul className="skillsPrint">
-                              <li>{this.state.skillName}</li>
-                              {/*{this.state.skillName.map(function(sklApnd) {
-                                return sklApnd
+
+                              {this.state.skillName.map(function(skillData, index) {
+                                 return (
+                                        <li key={index}>{skillData}</li>
+                                  )
                               })
-                              } */}
+                              } {/*end of .map function*/}
                           </ul>
 
                           <h3>Interests</h3>
                           <ul className="interestsPrint">
-                              <li>{this.state.interestName} </li>
-                               {/*{this.state.skillName.map(function(intrstApnd) {
-                                return intrstApnd
+
+                               {this.state.interestName.map(function(interestData,index) {
+                                return (
+                                        <li key={index}>{interestData}</li>
+                                  )
                               })
-                              } */}
+                              } {/*end of .map function*/}
+
                           </ul>
                         <label htmlFor="slack-user-name" className="col-sm-2 control-label">Slack: {this.state.slack}</label>
                       </div>
