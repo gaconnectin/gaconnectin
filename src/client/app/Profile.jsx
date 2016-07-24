@@ -1,6 +1,5 @@
 import React       from 'react';
-import ProfileList from './ProfileList.jsx';
-import SkillList   from './SkillList.jsx';
+
 
 
 export default function Profile(props) {
@@ -14,21 +13,21 @@ export default function Profile(props) {
                 <img src="https://dizivizi.com/mbb/imgs/site/default_user.png"/>
               </div>
               <div className="col-sm-9">
-                  <form className="form-inline">
+                  <form onSubmit={props.updateUserName} className="form-inline">
                     <div className="form-group">
-                      <label htmlFor="inputEmail3" className="col-sm-2 control-label">Name</label>
+                      <label className="col-sm-2 control-label">Name</label>
                       <div className="col-sm-10">
-                        <input type="email" className="form-control" id="inputEmail3" placeholder="Display name"/>
+                        <input type="text" className="form-control" name="name" placeholder="Display name"/>
                           <button className="btn btn-default">Save</button>
                       </div>
                      </div>
                     </form>
 
-                    <form action="post" className="form-inline">
+                    <form onSubmit={props.updateUserSlack} className="form-inline">
                       <div className="form-group">
-                        <label htmlFor="inputPassword3" className="col-sm-2 control-label">SlackId</label>
+                        <label className="col-sm-2 control-label">SlackId</label>
                         <div className="col-sm-10">
-                          <input type="text" className="form-control" id="inputPassword3" placeholder="Please enter your slackId"/>
+                          <input type="text" className="form-control" name="slack" placeholder="Please enter your slackId"/>
                             <button className="btn btn-default">Save</button>
                         </div>
                       </div>
@@ -45,7 +44,7 @@ export default function Profile(props) {
                             </select>
                           </div>
                          <div className="form-group">
-                            <input type="text" className="form-control" id="inputPassword3" placeholder="Update here"/>
+                            <input type="text" className="form-control" placeholder="Update here"/>
                           </div>
                         <button type="submit" className="btn btn-default">Save</button>
                       </form>
@@ -53,13 +52,14 @@ export default function Profile(props) {
 
                     <div className="row">
                       <div className="col-sm-6">
-                      <ProfileList />
+                      <SkillList />
                       </div>
                       <div className="col-sm-6">
                       <SkillList />
                       </div>
                     </div>
               </div>
+              <button type="submit" className="btn btn-default">Done!</button>
           </div>
         </div>
     )

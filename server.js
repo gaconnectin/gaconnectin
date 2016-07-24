@@ -28,12 +28,12 @@ app.use('/user', userRoute);
 app.use( express.static(path.join(__dirname, 'dist')));
 
 
-
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'))
+})
 
 
 app.listen(PORT , () => console.log(`server magic on`, PORT ) );
 
 
-app.get('*', (req, res)=>
-    res.sendFile(path.join(__dirname, 'dist', 'index.html'))
-    )
+

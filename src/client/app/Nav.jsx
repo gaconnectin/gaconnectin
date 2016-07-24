@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router'
+import { Link } from 'react-router';
+require('../fonts/logo.svg');
 
-//<img className="logo" src="../fonts/reel.svg"/>
 
 export default function Nav(props){
 
@@ -13,8 +13,9 @@ export default function Nav(props){
     <nav className="navbar navbar-default navbar-fixed-top">
          <div className="container">
            <div className="navbar-header">
-             <a className="navbar-left">Logo</a>
-             <Link to="/">gaConnectIn</Link>
+             <ul className="nav navbar-nav">
+            <li><Link to="/" className=""><span className="logo"></span></Link></li>
+          </ul>
             </div>
              <ul className="nav navbar-nav navbar-right">
                <li><Link to="/logout" activeStyle={{ color: 'red' }}>Log Out</Link></li>
@@ -34,8 +35,9 @@ export default function Nav(props){
      <nav className="navbar navbar-default navbar-fixed-top">
        <div className="container">
          <div className="navbar-header">
-           <a className="navbar-left">Logo</a>
-           <Link to="/">gaConnectIn</Link>
+          <ul className="nav navbar-nav">
+            <li><Link to="/" className=""><span className="logo"></span></Link></li>
+          </ul>
           </div>
            <ul className="nav navbar-nav navbar-right">
               <li><Link to="/login" activeStyle={{ color: 'red' }}>Login</Link></li>

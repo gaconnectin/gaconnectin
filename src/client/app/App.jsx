@@ -1,7 +1,7 @@
 // import the libs we need
-import React from 'react'
-import Nav from './Nav.jsx'
-import Footer from './Footer.jsx'
+import React            from 'react'
+import Nav              from './Nav.jsx'
+import Footer           from './Footer.jsx'
 
 import ajax             from '../helpers/ajaxAdaptor.js';
 import util             from '../helpers/util.js';

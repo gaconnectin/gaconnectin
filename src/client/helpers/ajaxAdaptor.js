@@ -15,16 +15,12 @@ export default class AjaxAdaptor {
     return fetch('/search/interests')
     .then(r => r.json())
   }
-  // Getting user attributes by ":uID"
-  getUserAttributes() {
-    return fetch('/user/3')
+
+  getUserAttributes(id) {
+    let setId = location.pathname.split('/')
+    setId = parseInt(setId[setId.length -1])
+    return fetch(`/user/${setId}`)
     .then(r=> r.json())
-    console.log(r)
-  }
-  getUser() {
-    return fetch('user/2')
-    .then(r=> r.json())
-    console.log(r)
   }
 
   getStudents(attrType, attrName) {
@@ -34,6 +30,7 @@ export default class AjaxAdaptor {
     .catch(error=>{
       throw error
     })
+
 
   }
 
