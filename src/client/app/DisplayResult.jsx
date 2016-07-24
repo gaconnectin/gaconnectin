@@ -33,8 +33,3 @@ render(){
 }
 
 }//end displayresults
-<<<<<<< HEAD
-=======
-
-
->>>>>>> e0a7fddc186d1b0ce310e1e691da30eed39b82a4

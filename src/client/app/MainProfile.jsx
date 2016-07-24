@@ -1,6 +1,7 @@
 import React          from 'react';
-import ProfileList    from './Profile.jsx';
+import Profile        from './Profile.jsx';
 import ajaxAdaptor    from '../helpers/ajaxAdaptor.js';
+
 
 const ajax = new ajaxAdaptor(fetch);
 export default class  MainProfile extends React.Component {
@@ -11,7 +12,8 @@ export default class  MainProfile extends React.Component {
         displayName:[],
         username: [],
         interestName:[],
-        skillName:[]
+        skillName:[],
+        editProfile: false
     }
   }//end constructor
   componentDidMount(event) {
@@ -45,7 +47,14 @@ export default class  MainProfile extends React.Component {
                 console.log(this.state.interestName, "this is interestName array")
         })
     } //end of componentDidMount()
+        toggleEdit(event){
+            event.preventDefault
+            console.log("toggleEdit btn CLICKED !!");
+            this.state.editProfile = !this.state.editProfile
+            this.setState({editProfile:this.state.editProfile})
+        }
   render(){
+    if (this.state.editProfile === false) {
     return (
         <div className="container">
           <hr/>
@@ -82,16 +91,15 @@ export default class  MainProfile extends React.Component {
                       </div>
                      </div>
                     </form>
-                    <form action="user-profile" className="form-inline">
-                      <div className="form-group">
-                        <div className="col-sm-10">
-                            <button className="btn btn-default goTOEditUSerProf"> EDIT PROFILE</button>
-                        </div>
-                      </div>
-                    </form>
+                            <button onClick={this.toggleEdit.bind(this)} className="btn btn-default "> EDIT PROFILE</button>
               </div>
           </div>
         </div>
     )
+       } else {
+         return (
+            <Profile toggleProfile={this.toggleEdit.bind(this)} />
+          )
+       }
   } //end of render()
 }
