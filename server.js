@@ -14,6 +14,8 @@ const app         = express();
 const PORT        = process.argv[2] || process.env.port || 3000;
 
 
+app.use(require('compression')())
+
 app.use( logger( DEV ? 'dev' : 'common') );
 
 app.use(bodyParser.json());

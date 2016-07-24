@@ -11,7 +11,7 @@ export default class AjaxAdaptor {
     }
 
   getInterests() {
-    console.log('hit getInterest AjaxAdapter')
+    //console.log('hit getInterest AjaxAdapter')
     return fetch('/search/interests')
     .then(r => r.json())
   }
@@ -24,7 +24,7 @@ export default class AjaxAdaptor {
   }
   updateUser(userInfo) {
     let setId = location.pathname.split('/')
-    console.log(userInfo)
+    //console.log(userInfo)
     setId = parseInt(setId[setId.length -1])
     return fetch(`/user/${setId}`, {
       method:'POST',
@@ -39,7 +39,7 @@ export default class AjaxAdaptor {
     createUser(userInfo) {
     // let setId = location.pathname.split('/')
     // setId = parseInt(setId[setId.length -1])
-    console.log(userInfo)
+    //console.log(userInfo)
     return fetch('/user', {
       method:'POST',
       headers: {

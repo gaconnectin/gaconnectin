@@ -20,7 +20,7 @@ export default function CreateUser(props) {
     ajax.createUser(newUser)
         .then(data=> {})
 
-    console.log(newUser);
+
     // fired the App's prop function
     //props.addTask(newTask);
 
