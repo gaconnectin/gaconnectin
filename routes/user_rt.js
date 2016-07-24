@@ -1,7 +1,8 @@
 const userRouter = require('express').Router();
 const { getUserAttributes,
         getAllUsers,
-        getUser,
+        getUserByUsername,
+        getUserByID,
         createUser,
         checkInvitationToken,
         updateUser,
@@ -16,18 +17,14 @@ const tokenService = require('../service/tokens.js');
 const sendJSONresp = (req,res)=>res.json(res.rows)
 const sendError = (err,req,res,next)=>res.status(401).json(err)
 
-//userRouter.use( tokenService.validateToken )
 
   /* This is whre the user logs in */
 userRouter.post('/authenticate',
-            getUser,
+            getUserByUsername,
             tokenService.createToken,
             sendError)
 
-
-userRouter.route('/')
-  .get(getAllUsers, sendJSONresp)
-  .post(checkInvitationToken, createUser, (req, res)=> {
+userRouter.post('/', checkInvitationToken, createUser, (req, res)=> {
     if (res.error) {
 //      res.send("Got error: ", res.error);
       res.status(400).send(res.error);
@@ -37,13 +34,9 @@ userRouter.route('/')
 
   })
 
-userRouter.route('/:uID')
-  .get(getUserAttributes, getUser, (req, res) => {
-    return res.json({user: res.user,
-            attributes: res.attributes});
-  })
-  .put(updateUser, sendJSONresp)
-  .delete(deleteUser, sendJSONresp)
+userRouter.use( tokenService.validateToken )
+
+userRouter.get('/', getAllUsers, sendJSONresp)
 
 userRouter.route('/:uID/add-attr')
   .post(addUserAttribute, sendJSONresp)
@@ -51,5 +44,12 @@ userRouter.route('/:uID/add-attr')
 userRouter.route('/:uID/delete-attr')
   .post(findUserAttributeId, deleteUserAttribute, sendJSONresp)
 
+userRouter.route('/:uID')
+  .get(getUserAttributes, getUserByID, (req, res) => {
+    return res.json({user: res.user,
+            attributes: res.attributes});
+  })
+  .put(updateUser, sendJSONresp)
+  .delete(deleteUser, sendJSONresp)
 
 module.exports = userRouter;
