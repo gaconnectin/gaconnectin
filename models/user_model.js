@@ -1,4 +1,4 @@
-const _db = require('../db/db');
+const _db = require('./db');
 const bcrypt = require('bcrypt');
 const salt = bcrypt.genSalt(10);
 

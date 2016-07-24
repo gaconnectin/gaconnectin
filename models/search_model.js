@@ -1,5 +1,5 @@
 'use strict';
-const _db = require('../db/db') ;
+const _db = require('./db') ;
 // const pg = require('pg-promise')({
 // // Initialization Options
 // });
@@ -50,8 +50,8 @@ module.exports = {
     // Geeting users who have certain attributes
   getUsersAttributes(req, res, next) {
     console.log(`in getUsersAttributes. type = ${req.query.attr_type}, name=${req.query.attr_name}`)
-    _db.any(`SELECT users.display_name, users.username, users.user_id, users.slack 
-            FROM users NATURAL INNER JOIN user2attribute NATURAL INNER JOIN attributes 
+    _db.any(`SELECT users.display_name, users.username, users.user_id, users.slack
+            FROM users NATURAL INNER JOIN user2attribute NATURAL INNER JOIN attributes
             WHERE attributes.attr_type = $1 and attributes.attr_name=$2;`, [req.query.attr_type, req.query.attr_name])
         .then( skills=> {
           res.rows = skills ;
