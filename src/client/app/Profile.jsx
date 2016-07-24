@@ -1,7 +1,5 @@
 import React       from 'react';
 
-
-
 export default function Profile(props) {
 
   return (
@@ -48,18 +46,8 @@ export default function Profile(props) {
                           </div>
                         <button type="submit" className="btn btn-default">Save</button>
                       </form>
-
-
-                    <div className="row">
-                      <div className="col-sm-6">
-                      <SkillList />
-                      </div>
-                      <div className="col-sm-6">
-                      <SkillList />
-                      </div>
-                    </div>
               </div>
-              <button type="submit" className="btn btn-default">Done!</button>
+              <button type="submit" className="btn btn-default" onClick={props.toggleProfile} >Done!</button>
           </div>
         </div>
     )

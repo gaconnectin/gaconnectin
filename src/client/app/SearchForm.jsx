@@ -132,7 +132,6 @@ render(){
             <div>
                 <DisplayResult showAllStudents={this.state.studentList} />
           </div>
-
         </div>
       )
    }

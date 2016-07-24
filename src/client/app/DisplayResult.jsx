@@ -33,5 +33,3 @@ render(){
 }
 
 }//end displayresults
-
-
