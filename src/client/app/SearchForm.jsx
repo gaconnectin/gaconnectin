@@ -139,7 +139,7 @@ render(){
             <div>
                 <DisplayResult showAllStudents={this.state.studentList} />
           </div>
-          <pre>{JSON.stringify(this.state, null, 2)}</pre>
+
         </div>
       )
    }
