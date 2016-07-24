@@ -76,9 +76,6 @@ getUsersChoice(event){
        this.state.studentList = students
        this.setState({studentList: this.state.studentList})
     }).catch(error=> {throw error})//end catch
-    //then pass this data to DisplayResults Component
-
-    console.log(this.state.studentList)
 
   }//end getStudentWithSkill
 
@@ -96,8 +93,6 @@ getUsersChoice(event){
 
     //currently this is just returning all Interests, it is not based on the input value
     ajax.getStudents(interest, studentInterest).then( students=> {
-      console.log('promise returned in getStudentInterest ajax call')
-      console.log(students)
       this.state.studentList = students
       this.setState({studentList: this.state.studentList})
       }
@@ -109,10 +104,9 @@ render(){
 
     return (
 
-        <div className="row text-center">
+        <div className="row text-center home">
           <div>
-          <hr />
-            <h1>Welcome to Ga Connectin!</h1>
+            <h1 className="header-name">Welcome to Ga Connectin!</h1>
             <h3>Start your search now!</h3>
               <section className="home-block">
                   <form className="form-inline" onClick={this.getUsersChoice.bind(this)}>
@@ -126,7 +120,6 @@ render(){
                       </div>
                   </form>
               </section>
-              <hr />
             </div>
             <div>
               <SearchOption
