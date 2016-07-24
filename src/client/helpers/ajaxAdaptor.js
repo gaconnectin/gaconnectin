@@ -11,14 +11,13 @@ export default class AjaxAdaptor {
     }
 
   getInterests() {
-    console.log("hit getInterest AjaxAdapter")
+    console.log('hit getInterest AjaxAdapter')
     return fetch('/search/interests')
     .then(r => r.json())
-    console.log(r)
   }
   // Getting user attributes by ":uID"
   getUserAttributes() {
-    return fetch('/user/2')
+    return fetch('/user/3')
     .then(r=> r.json())
     console.log(r)
   }
@@ -28,5 +27,16 @@ export default class AjaxAdaptor {
     console.log(r)
   }
 
+  getStudents(attrType, attrName) {
+    console.log('hit the gitStudent in ajaxAdaptor')
+    return fetch(`/search/users-attributes?attr_type=${attrType}&attr_name=${attrName}`)
+    .then(r => r.json())
+    .catch(error=>{
+      throw error
+    })
 
-}
+  }
+
+
+
+}//end Ajax Adaptor

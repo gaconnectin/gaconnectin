@@ -9,7 +9,7 @@ export default function SearchOption(props){
           <div className="row text-center">
             <div>
               <h2>I want to find someone who can help me with:</h2>
-              <form onClick={props.getStudentWithSkill}>
+              <form>
                  <select id="skill">
                   {/*Return results from the db, population the options*/}
                     {props.userSkill.map(function(item, index){
@@ -17,7 +17,7 @@ export default function SearchOption(props){
                     })}
 
                  </select>
-                <button className="btn btn-default" type="submit">FIND!</button>
+                <button onClick={props.getStudentWithSkill} className="btn btn-default" type="submit">FIND!</button>
               </form>
             </div>
             <hr />
