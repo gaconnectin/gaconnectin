@@ -1,4 +1,5 @@
 const jwt     = require('jsonwebtoken');
+const secret = "dsfGGHDsfrt678GJpf35dfgghMacvrthd2we456jddopljk"
 
 function getTokenFromHeader(req) {
   if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
@@ -13,18 +14,24 @@ function getTokenFromHeader(req) {
 module.exports={
 
   createToken(req,res,next){
-    const {username,user_id}=res.user
-    // we should be certain that a user exists by now (res.user)
-    const token = jwt.sign({username,user_id}, 'superSecret', {
-      expiresIn: 30 // expires in 24 hours
-    });
+    //console.log("in CreateToken!! res.error = ", res.error)
+    if (res.error) {
+      next("got error!");
+    } else {
+      const {username,user_id}=res.user
+      // we should be certain that a user exists by now (res.user)
+      const token = jwt.sign({username,user_id}, secret, {
+        expiresIn: 30 // expires in 24 hours
+      });
 
-    // return the information including token as JSON
-    return res.json({
-      success: true,
-      message: 'Enjoy your token!',
-      token: token
-    });
+      // return the information including token as JSON
+      return res.json({
+        success: true,
+        message: 'Enjoy your token!',
+        username: username,
+        token: token
+      });
+    }
   },
 
   validateToken(req,res,next){

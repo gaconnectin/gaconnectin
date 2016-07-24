@@ -37,6 +37,16 @@ export default class AjaxAdaptor {
 
   }
 
+ loginUser(userInfo){
+    console.log("IN loginUser userInfo = ", userInfo);
+    return fetch('/user/authenticate',{
+      method:'POST',
+      headers:{
+        "Content-type": "application/json; charset=UTF-8"
+      },
+      body: JSON.stringify(userInfo)
+    })
+  }
 
 
 }//end Ajax Adaptor

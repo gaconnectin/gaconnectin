@@ -15,7 +15,10 @@ const tokenService = require('../service/tokens.js');
 
 /* convenience method for sending */
 const sendJSONresp = (req,res)=>res.json(res.rows)
-const sendError = (err,req,res,next)=>res.status(401).json(err)
+const sendError = (err,req,res,next)=>{
+    console.log("In sendError. err =", err);
+    res.status(401).json(err)
+ }
 
 
   /* This is whre the user logs in */

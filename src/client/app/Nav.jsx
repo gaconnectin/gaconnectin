@@ -6,7 +6,7 @@ import { Link } from 'react-router'
 export default function Nav(props){
 
 
- if(props.userLoggedIn){
+ if(localStorage.token){
 
   return (
 

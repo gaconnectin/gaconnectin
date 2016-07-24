@@ -25,15 +25,29 @@ export default class Index extends React.Component{
     super();
 
     // here's our state
-    this.state = {
-      userLoggedIn: false,
-      skills: [
-        "CSS",
-        "HTML",
-        "Javascript"
-      ],
-      interests: []
+    if (localstorage.token) {
+      this.state = {
+        userLoggedIn: true,
+        skills: [
+          "CSS",
+          "HTML",
+          "Javascript"
+        ],
+        interests: []
+      }
+    } else {
+      this.state = {
+        userLoggedIn: false,
+        skills: [
+          "CSS",
+          "HTML",
+          "Javascript"
+        ],
+        interests: []
+      }
     }
+
+    console.log("userLoggedIn = ", this.state.userLoggedIn);
   }
 
  getSkills() {

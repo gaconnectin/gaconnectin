@@ -2,27 +2,32 @@ import React from 'react';
 import { Link } from 'react-router'
 
 
+export default class DisplayResults extends React.Component{
+render(){
+  return(
 
-const DisplayResult = props=>
+        <div className="container">
+          <ul>
+            {this.props.showAllStudents.map(function(student, index){
+               return (
+                <li key={index}>
+                  <h3>{student.display_name}</h3>
+                  <img src="https://dizivizi.com/mbb/imgs/site/default_user.png"/>
+                    <section className="profile-link">
+                      <form action={`heiditest/user/${student.user_id}`} method="get">
+                      {/*<Link className="btn btn-success" to={`heiditest/user/${student.user_id}`}>Visit Profile</Link>*/}
+                      <button type="submit" className="btn btn-success">Visit Profile</button>
+                      </form>
+                    </section>
+                    <hr />
+                </li>
+                )}
+            )}
+          </ul>
+        </div>
 
-  <div className="container">
-    <hr/>
-    <ul>
+    )
 
-      {props.showAllStudents.map(function(student, index){
-         return (
-          <li key={index}>
-          <p>{student.display_name}</p>
-          <img src="https://dizivizi.com/mbb/imgs/site/default_user.png"/>
-          <p><Link to='/profile/user/${student.user_id}'>Visit Profile</Link></p>
-          </li>
-          )
-      }
-      )}
+}
 
-    </ul>
-
-  </div>
-
-
-export default DisplayResult;
+}//end displayresults

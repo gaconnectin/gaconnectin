@@ -178,6 +178,7 @@ function getUserByUsername(req, res, next) {
       }else{
         res.error = true
       }
+      console.log("In select data. user = ", user);
       console.log(res.user)
       next();
 
